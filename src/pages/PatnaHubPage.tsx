@@ -14,12 +14,12 @@ interface PatnaHubPageProps {
 export const PatnaHubPage: React.FC<PatnaHubPageProps> = ({ onOpenQuoteModal }) => {
   const facilities = [
     {
-      name: 'Ventra Corporate Towers (Group HQ)',
-      location: 'Bailey Road, Patna, Bihar — 800001',
-      type: 'Executive Secretariat, IT Engineering Lab, Architecture Studio',
-      hours: 'Mon - Sat: 8:00 AM - 8:30 PM',
-      phone: '+91-94300-88000',
-      badge: 'Central Command'
+      name: 'Brentra Corporate Headquarters',
+      location: 'Preven Vila, Flat Number 34, New Khajoorbana, Patna, Bihar – 800006',
+      type: 'Executive Secretariat, Civil Architecture Studio, IT Development Lab',
+      hours: 'Mon - Sun: 8:00 AM - 9:00 PM',
+      phone: '9065296294 / +91 91421 44940',
+      badge: 'Principal Office'
     },
     {
       name: 'Danapur Cold-Chain & Food Logistics Center',

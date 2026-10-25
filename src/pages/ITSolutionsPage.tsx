@@ -6,8 +6,25 @@ import {
   Bot, 
   CheckCircle2, 
   ArrowRight, 
-  Calendar, 
-  Server
+  Server,
+  Sparkles,
+  Globe,
+  Sliders,
+  ShieldCheck,
+  Phone,
+  Mail,
+  Layers,
+  Check,
+  Database,
+  Cloud,
+  Headphones,
+  Video,
+  Cctv,
+  Send,
+  MessageSquare,
+  FileCheck2,
+  Lock,
+  ExternalLink
 } from 'lucide-react';
 
 interface ITSolutionsPageProps {
@@ -15,201 +32,281 @@ interface ITSolutionsPageProps {
 }
 
 export const ITSolutionsPage: React.FC<ITSolutionsPageProps> = ({ onOpenQuoteModal }) => {
-  const [platform, setPlatform] = useState<'web' | 'mobile' | 'fullstack' | 'ai'>('fullstack');
-  const [timeline, setTimeline] = useState<'express' | 'standard' | 'enterprise'>('standard');
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([
-    'auth', 'payment', 'realtime'
-  ]);
-  const [estimatorSubmitted, setEstimatorSubmitted] = useState(false);
-  const [clientName, setClientName] = useState('');
-  const [clientPhone, setClientPhone] = useState('');
+  // IT Enquiry Form State
+  const [itName, setItName] = useState('');
+  const [itPhone, setItPhone] = useState('');
+  const [itEmail, setItEmail] = useState('');
+  const [itCompany, setItCompany] = useState('');
+  const [itProjectType, setItProjectType] = useState('Business Website (1-5 Pages)');
+  const [itRequirements, setItRequirements] = useState('');
+  const [itBudget, setItBudget] = useState('₹10,000 - ₹25,000');
+  const [itSubmitted, setItSubmitted] = useState(false);
 
-  const [consultDate, setConsultDate] = useState('2026-10-22');
-  const [consultTime, setConsultTime] = useState('14:00');
-  const [consultBooked, setConsultBooked] = useState(false);
+  // Estimator Selection State
+  const [selectedServiceRate, setSelectedServiceRate] = useState<string>('Basic Business Website (1–5 Pages)');
 
-  const platforms = [
-    { id: 'web', name: 'Web Application & SaaS', baseCost: 75000, desc: 'High-performance React/Next.js responsive cloud app' },
-    { id: 'mobile', name: 'Cross-Platform Mobile App', baseCost: 95000, desc: 'Native-feel Flutter / React Native iOS & Android' },
-    { id: 'fullstack', name: 'Enterprise Full-Stack Suite', baseCost: 145000, desc: 'Unified Web App + Mobile Apps + Admin ERP Portal' },
-    { id: 'ai', name: 'AI Workflows & LLM Automation', baseCost: 120000, desc: 'Custom Agents, RAG Pipelines & Automated Ops' },
+  // Official Verified Flyer Rates (Section 05 of Pamphlet)
+  const itServicesRateCard = [
+    { service: 'Basic Business Website (1–5 Pages)', price: '₹10,000', category: 'Web Development', note: 'Responsive, Contact form, SEO setup' },
+    { service: 'Business Website (5–10 Pages)', price: '₹15,000', category: 'Web Development', note: 'Multi-page corporate site with CMS' },
+    { service: 'Professional Website (10–15 Pages)', price: '₹25,000', category: 'Web Development', note: 'Custom brand styling, blog & portal' },
+    { service: 'E-commerce Website', price: '₹30,000', category: 'Web Development', note: 'Product catalog, payment gateway & cart' },
+    { service: 'Custom Website / Web Portal', price: '₹40,000+', category: 'Web Development', note: 'Tailored SaaS, database & user dashboard' },
+    { service: 'Android App Development', price: '₹25,000+', category: 'Mobile Apps', note: 'Google Play Store deployment, modern UI' },
+    { service: 'Android + iOS App Development', price: '₹40,000+', category: 'Mobile Apps', note: 'Cross-platform Flutter / React Native' },
+    { service: 'Custom Mobile App', price: '₹50,000+', category: 'Mobile Apps', note: 'Enterprise native app with custom APIs' },
+    { service: 'ERP / CRM Solutions', price: '₹30,000+', category: 'Enterprise Software', note: 'Lead tracking, staff workflows & operations' },
+    { service: 'Billing & Inventory Software', price: '₹20,000+', category: 'Enterprise Software', note: 'GST invoicing, stock alerts & reporting' },
+    { service: 'School / Institute Management', price: '₹30,000+', category: 'Enterprise Software', note: 'Student portal, fees, attendance & LMS' },
+    { service: 'Website Maintenance (AMC)', price: '₹2,000 / month', category: 'Maintenance', note: 'Regular updates, security patches & backups' },
+    { service: 'Domain, Hosting & Email Setup', price: '₹3,000+', category: 'Infrastructure', note: 'High-speed cloud server & Google Workspace' },
+    { service: 'Network Setup', price: '₹5,999+', category: 'Infrastructure', note: 'LAN, Wi-Fi mesh & router firewall configuration' },
+    { service: 'CCTV Installation', price: '₹7,999+', category: 'Infrastructure', note: 'HD camera wiring, DVR/NVR & mobile live-feed' },
+    { service: 'IT AMC & Technical Support', price: '₹3,000 / month', category: 'Maintenance', note: 'Comprehensive hardware & IT desk support' },
   ];
 
-  const featureOptions = [
-    { id: 'auth', name: 'Role-Based Access & SSO Auth', cost: 15000 },
-    { id: 'payment', name: 'Payment Gateway (Razorpay/Stripe)', cost: 12000 },
-    { id: 'realtime', name: 'Real-Time Sync & WebSockets', cost: 20000 },
-    { id: 'ai-bot', name: 'Custom AI Assistant / Copilot', cost: 35000 },
-    { id: 'analytics', name: 'Advanced BI & Analytics Dashboard', cost: 25000 },
-    { id: 'devops', name: 'Kubernetes / AWS Auto-Scaling Setup', cost: 30000 },
-  ];
-
-  const toggleFeature = (id: string) => {
-    if (selectedFeatures.includes(id)) {
-      setSelectedFeatures(selectedFeatures.filter(f => f !== id));
-    } else {
-      setSelectedFeatures([...selectedFeatures, id]);
+  // Core Service Offerings
+  const coreServices = [
+    {
+      title: 'Business Website Development',
+      desc: 'Mobile-responsive, fast-loading, SEO-ready corporate websites built to convert visitors into paying clients.',
+      tags: ['Corporate Websites', 'Landing Pages', 'WordPress / React', 'Fast Load Times'],
+      icon: Globe,
+      color: 'blue'
+    },
+    {
+      title: 'E-Commerce Website Development',
+      desc: 'High-conversion online stores with secure UPI/card payment gateways, inventory management, and shipping integrations.',
+      tags: ['Shopify & WooCommerce', 'UPI / Razorpay', 'Product Filters', 'Order Management'],
+      icon: Code2,
+      color: 'emerald'
+    },
+    {
+      title: 'Web Application Development',
+      desc: 'Custom cloud-native web portals, SaaS platforms, client dashboards, and workflow automation platforms.',
+      tags: ['Next.js / Node.js', 'PostgreSQL / MongoDB', 'Role Authentication', 'Scalable APIs'],
+      icon: Layers,
+      color: 'indigo'
+    },
+    {
+      title: 'Android & iOS App Development',
+      desc: 'Native and cross-platform mobile apps for Android and iOS with fluid UI, push notifications, and offline capabilities.',
+      tags: ['Flutter / React Native', 'Play Store & App Store', 'Push Notifications', 'Real-time Sync'],
+      icon: Smartphone,
+      color: 'cyan'
+    },
+    {
+      title: 'ERP, CRM & Custom Software',
+      desc: 'Tailored enterprise resource planning, customer relationship management, billing, inventory, and school management systems.',
+      tags: ['Custom CRM', 'GST Billing', 'Inventory Tracking', 'Staff Management'],
+      icon: Database,
+      color: 'amber'
+    },
+    {
+      title: 'Domain, Hosting & Business Email',
+      desc: 'Reliable cloud servers, SSL certificates, official business email (Google Workspace/Zoho), and daily backups.',
+      tags: ['Cloud Hosting', 'Business Email', 'SSL Encryption', '99.9% Uptime'],
+      icon: Cloud,
+      color: 'sky'
+    },
+    {
+      title: 'Cloud Services & Networking',
+      desc: 'Secure local area network (LAN) setup, Wi-Fi mesh routing, server virtualization, and cloud data migration.',
+      tags: ['Office LAN Cabling', 'Wi-Fi Mesh', 'Firewall Setup', 'Cloud Migration'],
+      icon: Server,
+      color: 'violet'
+    },
+    {
+      title: 'CCTV & IT Infrastructure',
+      desc: 'HD IP CCTV surveillance camera installation, DVR/NVR setups, remote mobile viewing, and biometric access control.',
+      tags: ['IP & HD Cameras', 'DVR / NVR Setup', 'Mobile Remote View', 'Biometric Access'],
+      icon: Cctv,
+      color: 'rose'
+    },
+    {
+      title: 'Website Maintenance & Technical Support',
+      desc: 'Monthly AMC support, regular backups, malware scanning, performance tuning, and 24/7 emergency bug fixes.',
+      tags: ['Monthly Backups', 'Security Patches', 'Performance Tuning', 'Quick Support'],
+      icon: Headphones,
+      color: 'teal'
     }
+  ];
+
+  // Standard Website Package Inclusions (Verified from flyer)
+  const websiteInclusions = [
+    '100% Mobile & Tablet Responsive Design',
+    'Contact Form & WhatsApp Direct Click-to-Chat',
+    'Basic On-Page SEO (Meta tags, Titles, Sitemap)',
+    'Social Media Profile Links & Integration',
+    'Google Maps Location Integration (Where required)',
+    'Fast Deployment & SSL Security Setup'
+  ];
+
+  const handleEnquirySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setItSubmitted(true);
   };
 
-  const currentPlatformObj = platforms.find(p => p.id === platform) || platforms[0];
-  const featuresTotal = selectedFeatures.reduce((acc, featId) => {
-    const feat = featureOptions.find(f => f.id === featId);
-    return acc + (feat ? feat.cost : 0);
-  }, 0);
-
-  const timelineMultiplier = timeline === 'express' ? 1.25 : timeline === 'enterprise' ? 1.1 : 1.0;
-  const estimatedCost = Math.round((currentPlatformObj.baseCost + featuresTotal) * timelineMultiplier);
-
-  const handleEstimatorSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setEstimatorSubmitted(true);
-  };
-
-  const handleConsultSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setConsultBooked(true);
+  const generateWhatsAppUrl = () => {
+    const text = `*BRENTRA IT SOLUTIONS ENQUIRY*%0A` +
+      `--------------------------------%0A` +
+      `*Name:* ${itName || 'Client'}%0A` +
+      `*Phone:* ${itPhone || 'Not provided'}%0A` +
+      `*Company:* ${itCompany || 'Individual / Business'}%0A` +
+      `*Service Required:* ${itProjectType}%0A` +
+      `*Budget:* ${itBudget}%0A` +
+      `*Requirements:* ${encodeURIComponent(itRequirements || 'Please share a quotation and timeline.')}`;
+    return `https://wa.me/919142144940?text=${text}`;
   };
 
   return (
     <div className="min-h-screen bg-white text-slate-800">
       
-      {/* Hero Banner - Premium White */}
+      {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="flex items-center gap-2 text-blue-800 text-xs font-bold uppercase tracking-widest mb-3">
-            <Cpu className="w-4 h-4" /> Ventra IT & Digital Engineering Division
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-widest">
+              <Cpu className="w-4 h-4 text-blue-700" /> Brentra IT Solutions & Software
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold uppercase tracking-widest">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-700" /> Build • Automate • Grow
+            </span>
           </div>
 
-          <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.15] max-w-4xl">
-            Next-Generation Software Engineering & Enterprise Digital Scale
-          </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div className="lg:col-span-7">
+              <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.12]">
+                Custom Software, Web & Mobile Applications Built for Growth
+              </h1>
 
-          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mt-5 leading-relaxed">
-            From modern cloud architectures and SaaS applications to custom AI pipelines and mobile experiences, Ventra IT delivers rock-solid digital solutions for startups and enterprises across India.
-          </p>
+              <p className="text-base sm:text-lg text-slate-600 mt-5 leading-relaxed">
+                From high-converting business websites starting at <strong className="text-blue-900 font-bold">₹10,000</strong> to custom ERP/CRM software, Android/iOS applications, and complete IT infrastructure setup across Patna and Bihar.
+              </p>
 
-          <div className="flex flex-wrap items-center gap-4 pt-8">
-            <a
-              href="#estimator"
-              className="px-6 py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all"
-            >
-              Calculate Project Estimate
-            </a>
-            <a
-              href="#consultation"
-              className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs uppercase tracking-wider border border-slate-300 transition-colors shadow-sm"
-            >
-              Book 30-Min Architecture Call
-            </a>
-            <button
-              onClick={() => onOpenQuoteModal('it-solutions')}
-              className="px-5 py-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-900 font-bold text-xs uppercase tracking-wider border border-blue-200 transition-colors cursor-pointer"
-            >
-              Request Dedicated Staffing
-            </button>
-          </div>
+              <div className="flex flex-wrap items-center gap-4 pt-8">
+                <a
+                  href="#pricing-table"
+                  className="px-6 py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center gap-2"
+                >
+                  <span>View Verified Rate Card</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="#it-enquiry"
+                  className="px-5 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-colors flex items-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Request Custom IT Quote</span>
+                </a>
+                <a
+                  href="tel:9065296294"
+                  className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs uppercase tracking-wider border border-slate-300 transition-colors shadow-sm flex items-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-blue-700" />
+                  <span>9065296294</span>
+                </a>
+              </div>
 
-          <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <div>
-              <div className="text-2xl font-black text-[#0A192F] font-mono">140+</div>
-              <div className="text-xs text-slate-500 mt-1">Enterprise Codebases Deployed</div>
+              {/* Highlights row */}
+              <div className="mt-10 pt-6 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div>
+                  <div className="text-2xl font-black text-[#0A192F] font-mono">1–5 Pages</div>
+                  <div className="text-xs text-slate-500 mt-0.5">Website from ₹10,000</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-[#0A192F] font-mono">iOS & Android</div>
+                  <div className="text-xs text-slate-500 mt-0.5">Apps from ₹25,000</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-[#0A192F] font-mono">ERP & CRM</div>
+                  <div className="text-xs text-slate-500 mt-0.5">Solutions from ₹30,000</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-[#0A192F] font-mono">100% Owned</div>
+                  <div className="text-xs text-slate-500 mt-0.5">Source Code Rights</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="text-2xl font-black text-[#0A192F] font-mono">99.98%</div>
-              <div className="text-xs text-slate-500 mt-1">Cloud Infrastructure Uptime</div>
+
+            {/* Visual preview card with IT photo */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-slate-900 group">
+                <img 
+                  src="/img-it.jpg" 
+                  alt="Brentra IT Solutions & Software Development" 
+                  className="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-[#0A192F]/30 to-transparent flex flex-col justify-end p-6 text-white">
+                  <span className="px-3 py-1 rounded bg-blue-600/90 text-white text-[10px] font-bold uppercase tracking-wider w-max mb-2">
+                    Enterprise Engineering
+                  </span>
+                  <h3 className="text-xl font-bold text-white">Modern Software Architecture</h3>
+                  <p className="text-xs text-slate-200 mt-1">
+                    Delivering clean code, enterprise security, and 24/7 technical support for businesses across India.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="text-2xl font-black text-[#0A192F] font-mono">60+</div>
-              <div className="text-xs text-slate-500 mt-1">Senior Full-Stack Engineers</div>
-            </div>
-            <div>
-              <div className="text-2xl font-black text-[#0A192F] font-mono">ISO 27001</div>
-              <div className="text-xs text-slate-500 mt-1">Certified Security Controls</div>
-            </div>
+
           </div>
 
         </div>
       </section>
 
-      {/* Core Offerings Grid */}
-      <section className="py-20 bg-[#F8FAFC] border-b border-slate-200">
+      {/* Services Grid (9 Core Pillars) */}
+      <section className="py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <span className="text-xs font-bold text-blue-800 uppercase tracking-widest px-3 py-1 rounded bg-blue-50 border border-blue-200">
-              Full Lifecycle Engineering
+              End-to-End Technology Capabilities
             </span>
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#0A192F]">
-              Enterprise Software Capabilities
+              Comprehensive IT Solutions & Software Services
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base">
-              Custom-crafted digital products engineered for clean maintainability, military-grade security, and extreme horizontal scalability.
+            <p className="text-sm text-slate-600">
+              Everything your enterprise requires to build, automate, and scale operations digitally.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: Code2,
-                title: 'Custom Web & SaaS Engineering',
-                desc: 'Full-stack architectures built on Next.js, React, Node.js, Python, and PostgreSQL with atomic design and strict type safety.',
-                features: ['Multi-tenant databases', 'Modern UI/UX design', 'Automated CI/CD pipelines', 'High-throughput APIs']
-              },
-              {
-                icon: Smartphone,
-                title: 'Mobile Applications (iOS/Android)',
-                desc: 'Smooth native and cross-platform mobile apps using Flutter and React Native with offline sync and push notifications.',
-                features: ['Biometric authentication', 'Real-time GPS tracking', 'Payment SDK integrations', 'App Store publishing']
-              },
-              {
-                icon: Bot,
-                title: 'Business Automation & AI Workflows',
-                desc: 'Replace tedious manual administrative overhead with custom LLM copilots, document OCR parsing, and automated CRM workflows.',
-                features: ['Enterprise RAG search', 'Custom CRM/ERP workflows', 'WhatsApp Business API bots', 'Automated PDF extraction']
-              },
-              {
-                icon: Server,
-                title: 'Cloud DevOps & Dedicated Staffing',
-                desc: 'Scalable AWS, GCP, and Azure cloud infrastructure with Terraform IaC, Docker containerization, and dedicated engineer leasing.',
-                features: ['24/7 SRE monitoring', 'SOC-2 security hardening', 'Microservice architectures', 'Dedicated tech squad hire']
-              }
-            ].map((offering, idx) => {
-              const Icon = offering.icon;
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {coreServices.map((service, idx) => {
+              const Icon = service.icon;
               return (
                 <div 
                   key={idx}
-                  className="bg-white border border-slate-200 hover:border-slate-400 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
+                  className="bg-white border border-slate-200 hover:border-blue-400 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
                 >
                   <div>
                     <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                       <Icon className="w-6 h-6" />
                     </div>
                     <h3 className="font-heading font-bold text-lg text-[#0A192F] group-hover:text-blue-900 transition-colors">
-                      {offering.title}
+                      {service.title}
                     </h3>
-                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                      {offering.desc}
+                    <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                      {service.desc}
                     </p>
-
-                    <ul className="mt-4 pt-4 border-t border-slate-100 space-y-2">
-                      {offering.features.map((feat, fIdx) => (
-                        <li key={fIdx} className="text-xs text-slate-700 flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-blue-700 shrink-0" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
 
-                  <div className="pt-6 mt-4 border-t border-slate-100">
-                    <button
-                      onClick={() => onOpenQuoteModal('it-solutions')}
-                      className="text-xs font-bold text-[#0A192F] hover:text-blue-900 flex items-center gap-1.5 cursor-pointer"
+                  <div className="mt-6 pt-4 border-t border-slate-100">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {service.tags.map((tag, tIdx) => (
+                        <span key={tIdx} className="text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href="#it-enquiry"
+                      onClick={() => setItProjectType(service.title)}
+                      className="text-xs text-blue-700 hover:text-blue-900 font-bold inline-flex items-center gap-1"
                     >
-                      Inquire About {offering.title.split(' ')[0]} <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
+                      Enquire for this service →
+                    </a>
                   </div>
                 </div>
               );
@@ -219,291 +316,292 @@ export const ITSolutionsPage: React.FC<ITSolutionsPageProps> = ({ onOpenQuoteMod
         </div>
       </section>
 
-      {/* Interactive Project Cost Estimator Module */}
-      <section id="estimator" className="py-20 bg-white border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Website Package Standard Inclusions */}
+      <section className="py-14 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white border border-slate-200 rounded-2xl p-8 sm:p-10 shadow-sm">
+            <div className="max-w-3xl mb-6">
+              <span className="text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded bg-emerald-50 border border-emerald-200">
+                Guaranteed Inclusions
+              </span>
+              <h3 className="font-heading font-extrabold text-2xl text-[#0A192F] mt-2">
+                Standard Inclusions with Every Website Package (1–5 Pages & Above)
+              </h3>
+              <p className="text-xs text-slate-600 mt-1">
+                Every website built by Brentra Ventures includes these foundational business essentials at no hidden fee:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {websiteInclusions.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span className="text-xs font-bold text-slate-800">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500">
+              <span>* Domain, hosting renewals, premium plugins, paid APIs, hardware, cloud usage and advanced integrations are extra unless included in the scope.</span>
+              <span className="font-semibold text-blue-800">100% Transparent Terms</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Official Verified Price List Table (Section 05 of Pamphlet) */}
+      <section id="pricing-table" className="py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center mb-12 space-y-2">
+          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
             <span className="text-xs font-bold text-blue-800 uppercase tracking-widest px-3 py-1 rounded bg-blue-50 border border-blue-200">
-              Instant Estimation Engine
+              Verified Business Rates
             </span>
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#0A192F]">
-              Interactive Project Cost Estimator
+              IT Solutions & Software Services Rate Card
             </h2>
-            <p className="text-slate-600 text-sm max-w-xl mx-auto">
-              Configure your platform, modules, and target delivery timeframe for an instantaneous commercial budget estimate.
+            <p className="text-sm text-slate-600">
+              Official price list as published by Brentra Ventures Private Limited. No hidden surprises.
             </p>
           </div>
 
-          <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              
-              {/* Configuration Controls (7 cols) */}
-              <div className="lg:col-span-7 space-y-6">
-                
-                {/* 1. Platform Type */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
-                    1. Select Application Architecture
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {platforms.map((p) => {
-                      const isSel = platform === p.id;
-                      return (
-                        <button
-                          type="button"
-                          key={p.id}
-                          onClick={() => setPlatform(p.id as any)}
-                          className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                            isSel 
-                              ? 'bg-[#0A192F] border-[#0A192F] text-white shadow-md' 
-                              : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
-                          }`}
-                        >
-                          <div className={`text-xs font-bold ${isSel ? 'text-white' : 'text-[#0A192F]'}`}>{p.name}</div>
-                          <div className={`text-[11px] mt-1 leading-tight ${isSel ? 'text-slate-300' : 'text-slate-500'}`}>{p.desc}</div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* 2. Feature Add-ons */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
-                    2. Select Architecture Modules & Add-Ons
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {featureOptions.map((feat) => {
-                      const isChecked = selectedFeatures.includes(feat.id);
-                      return (
-                        <button
-                          type="button"
-                          key={feat.id}
-                          onClick={() => toggleFeature(feat.id)}
-                          className={`p-2.5 rounded-xl border text-left flex items-center justify-between text-xs transition-all cursor-pointer ${
-                            isChecked 
-                              ? 'bg-blue-50 border-blue-400 text-blue-900 font-bold' 
-                              : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
-                          }`}
-                        >
-                          <span>{feat.name}</span>
-                          <span className="font-mono text-[11px] opacity-80">+₹{feat.cost.toLocaleString('en-IN')}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* 3. Delivery Pace */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
-                    3. Target Delivery Speed
-                  </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[
-                      { id: 'standard', name: 'Standard (8-10 Wks)', desc: 'Regular cadence' },
-                      { id: 'express', name: 'Express (4-6 Wks)', desc: '2x velocity' },
-                      { id: 'enterprise', name: 'Enterprise (Phased)', desc: 'Phased rollout' },
-                    ].map((t) => (
-                      <button
-                        type="button"
-                        key={t.id}
-                        onClick={() => setTimeline(t.id as any)}
-                        className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
-                          timeline === t.id 
-                            ? 'bg-[#0A192F] border-[#0A192F] text-white font-bold' 
-                            : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
-                        }`}
-                      >
-                        <div className="text-xs font-bold">{t.name}</div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Estimate Summary & Submission Card (5 cols) */}
-              <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
-                <div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
-                    <span className="text-slate-500 uppercase tracking-wider font-bold">Estimated Budget</span>
-                    <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-mono text-[11px] font-bold">
-                      Transparent
-                    </span>
-                  </div>
-
-                  <div className="py-5 text-center">
-                    <div className="text-xs text-slate-500 mb-1">Estimated Investment</div>
-                    <div className="text-3xl sm:text-4xl font-heading font-black text-[#0A192F] tracking-tight">
-                      ₹{estimatedCost.toLocaleString('en-IN')}{' '}
-                      <span className="text-xs font-normal text-slate-400 font-mono">+ GST</span>
-                    </div>
-                    <p className="text-[11px] text-blue-800 mt-2 font-medium">
-                      Includes UX wireframing, QA testing, source code ownership & 60 days warranty
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 text-xs py-3 border-t border-b border-slate-100 text-slate-700">
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Architecture:</span>
-                      <span className="text-slate-900 font-bold">{currentPlatformObj.name}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Active Modules:</span>
-                      <span className="text-blue-900 font-bold">{selectedFeatures.length} Modules Selected</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">IP Ownership:</span>
-                      <span className="text-emerald-700 font-bold">100% Client Owned</span>
-                    </div>
-                  </div>
-                </div>
-
-                {estimatorSubmitted ? (
-                  <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-2 mt-4">
-                    <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
-                    <div className="text-sm font-bold text-slate-900">Proposal Dispatched!</div>
-                    <p className="text-xs text-slate-600">
-                      Our Lead Architect will call you at {clientPhone} with the Statement of Work (SOW).
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleEstimatorSubmit} className="space-y-3 mt-4">
-                    <div>
-                      <input
-                        type="text"
-                        required
-                        value={clientName}
-                        onChange={(e) => setClientName(e.target.value)}
-                        placeholder="Your Name / Company Name"
-                        className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-[#0A192F]"
-                      />
-                    </div>
-                    <div>
-                      <input
-                        type="tel"
-                        required
-                        value={clientPhone}
-                        onChange={(e) => setClientPhone(e.target.value)}
-                        placeholder="Phone Number (for SOW dispatch)"
-                        className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-[#0A192F]"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full py-3 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-transform active:scale-95 cursor-pointer"
+          <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xl max-w-5xl mx-auto">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-[#0A192F] text-white text-xs font-bold uppercase tracking-wider">
+                    <th className="py-4 px-6">Service / Deliverable</th>
+                    <th className="py-4 px-6">Category</th>
+                    <th className="py-4 px-6">Official Price (₹)</th>
+                    <th className="py-4 px-6">Inclusions & Scope</th>
+                    <th className="py-4 px-6 text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 text-xs text-slate-700 font-sans">
+                  {itServicesRateCard.map((item, idx) => (
+                    <tr 
+                      key={idx} 
+                      className={`hover:bg-blue-50/50 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'}`}
                     >
-                      Lock This Estimate & Get SOW
-                    </button>
-                  </form>
-                )}
+                      <td className="py-3.5 px-6 font-bold text-[#0A192F]">
+                        {item.service}
+                      </td>
+                      <td className="py-3.5 px-6 text-slate-500 font-medium">
+                        <span className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-[11px]">
+                          {item.category}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-6 font-mono font-extrabold text-blue-900 text-sm whitespace-nowrap">
+                        {item.price}
+                      </td>
+                      <td className="py-3.5 px-6 text-slate-600">
+                        {item.note}
+                      </td>
+                      <td className="py-3.5 px-6 text-center">
+                        <a
+                          href="#it-enquiry"
+                          onClick={() => {
+                            setItProjectType(item.service);
+                            setSelectedServiceRate(item.service);
+                          }}
+                          className="px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-[#0A192F] text-blue-800 hover:text-white font-bold text-[11px] transition-colors inline-block"
+                        >
+                          Book / Inquire
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-              </div>
-
+            <div className="p-4 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 flex flex-wrap justify-between items-center gap-2">
+              <span>* All prices are indicative of standard base scope. Highly custom logic, complex third-party API licensing, or specialized hardware are quoted upon requirement inspection.</span>
+              <a 
+                href="#it-enquiry" 
+                className="font-bold text-blue-800 hover:underline"
+              >
+                Need something else? Request a Custom Quote →
+              </a>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* Consultation Scheduling Module */}
-      <section id="consultation" className="py-20 bg-[#F8FAFC] border-b border-slate-200">
+      {/* Dedicated IT Enquiry Form */}
+      <section id="it-enquiry" className="py-20 bg-[#F8FAFC] border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider">
-                  <Calendar className="w-3.5 h-3.5 text-amber-600" /> Direct Calendar Access
-                </div>
-                <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
-                  Book a 30-Minute Architecture Consultation
-                </h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                  Discuss database design, cloud cost optimization, tech stack feasibility, or system migration directly with Er. Ritesh Ranjan (Director of Technology) and senior technical leads.
-                </p>
-
-                <div className="space-y-2 pt-2 text-xs text-slate-700">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Zero obligation technical review
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Google Meet or in-person at Patna HQ
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Actionable system architecture blueprint
-                  </div>
-                </div>
-              </div>
-
-              {/* Consultation Form */}
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
-                {consultBooked ? (
-                  <div className="text-center py-6 space-y-3">
-                    <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
-                      <CheckCircle2 className="w-8 h-8" />
-                    </div>
-                    <h4 className="font-heading font-bold text-lg text-slate-900">
-                      Consultation Confirmed!
-                    </h4>
-                    <p className="text-xs text-slate-600">
-                      Your session is booked for <strong className="text-slate-900">{consultDate}</strong> at <strong className="text-slate-900">{consultTime} IST</strong>.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleConsultSubmit} className="space-y-3">
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Select Preferred Date
-                      </label>
-                      <input
-                        type="date"
-                        required
-                        value={consultDate}
-                        onChange={(e) => setConsultDate(e.target.value)}
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-xs text-slate-900"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Select Time Slot (IST)
-                      </label>
-                      <select
-                        value={consultTime}
-                        onChange={(e) => setConsultTime(e.target.value)}
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-xs text-slate-900"
-                      >
-                        <option value="11:00">11:00 AM IST</option>
-                        <option value="14:00">02:00 PM IST</option>
-                        <option value="16:30">04:30 PM IST</option>
-                        <option value="18:00">06:00 PM IST</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Topic / Project Brief
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Scaling database to 100k DAU"
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-xs text-slate-900"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full py-3 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md cursor-pointer transition-transform active:scale-95"
-                    >
-                      Confirm Video Call Slot
-                    </button>
-                  </form>
-                )}
-              </div>
-
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+            <div className="flex items-center gap-2 text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">
+              <Send className="w-4 h-4 text-blue-600" /> Dedicated IT Consultation & Proposal
             </div>
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#0A192F] mb-2">
+              Submit Your IT & Software Requirements
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mb-8">
+              Fill out your project specifications below. Our technical architect will review your scope and provide a formal statement of work within 24 hours.
+            </p>
+
+            {itSubmitted ? (
+              <div className="p-8 text-center space-y-4 bg-emerald-50 border border-emerald-200 rounded-2xl max-w-md mx-auto">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+                <h3 className="font-heading font-bold text-xl text-slate-900">Enquiry Received!</h3>
+                <p className="text-xs text-slate-600">
+                  Thank you, <strong className="text-slate-900">{itName}</strong>. Our IT project lead will contact you on <strong className="text-slate-900">{itPhone}</strong> with technical architecture details and milestone timeline.
+                </p>
+                <div className="pt-2 flex flex-col sm:flex-row gap-2 justify-center">
+                  <a
+                    href={generateWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs"
+                  >
+                    <MessageSquare className="w-4 h-4" /> Open in WhatsApp
+                  </a>
+                  <button
+                    onClick={() => setItSubmitted(false)}
+                    className="px-4 py-2 rounded-xl bg-slate-200 text-slate-700 font-bold text-xs"
+                  >
+                    Send Another Enquiry
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleEnquirySubmit} className="space-y-4 text-xs">
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Your Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={itName}
+                      onChange={(e) => setItName(e.target.value)}
+                      placeholder="e.g. Ramesh Kumar"
+                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-blue-600 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Phone Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      value={itPhone}
+                      onChange={(e) => setItPhone(e.target.value)}
+                      placeholder="e.g. 9065296294"
+                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-blue-600 focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Business / Company Name</label>
+                    <input
+                      type="text"
+                      value={itCompany}
+                      onChange={(e) => setItCompany(e.target.value)}
+                      placeholder="e.g. ABC Enterprises Pvt Ltd"
+                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-blue-600 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Email Address</label>
+                    <input
+                      type="email"
+                      value={itEmail}
+                      onChange={(e) => setItEmail(e.target.value)}
+                      placeholder="name@company.com"
+                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-blue-600 focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Project / Service Type *</label>
+                    <select
+                      value={itProjectType}
+                      onChange={(e) => setItProjectType(e.target.value)}
+                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-blue-600 focus:outline-none"
+                    >
+                      <option value="Basic Business Website (1-5 Pages)">Basic Business Website (1–5 Pages) — ₹10,000</option>
+                      <option value="Business Website (5-10 Pages)">Business Website (5–10 Pages) — ₹15,000</option>
+                      <option value="Professional Website (10-15 Pages)">Professional Website (10–15 Pages) — ₹25,000</option>
+                      <option value="E-commerce Website">E-commerce Website — ₹30,000</option>
+                      <option value="Custom Website / Web Portal">Custom Website / Web Portal — ₹40,000+</option>
+                      <option value="Android App Development">Android App Development — ₹25,000+</option>
+                      <option value="Android + iOS App Development">Android + iOS App Development — ₹40,000+</option>
+                      <option value="Custom Mobile App">Custom Mobile App — ₹50,000+</option>
+                      <option value="ERP / CRM Solutions">ERP / CRM Solutions — ₹30,000+</option>
+                      <option value="Billing & Inventory Software">Billing & Inventory Software — ₹20,000+</option>
+                      <option value="School / Institute Management">School / Institute Management — ₹30,000+</option>
+                      <option value="Website Maintenance (AMC)">Website Maintenance (AMC) — ₹2,000 / month</option>
+                      <option value="Domain, Hosting & Email Setup">Domain, Hosting & Email Setup — ₹3,000+</option>
+                      <option value="Network Setup">Network Setup — ₹5,999+</option>
+                      <option value="CCTV Installation">CCTV Installation — ₹7,999+</option>
+                      <option value="IT AMC & Technical Support">IT AMC & Technical Support — ₹3,000 / month</option>
+                      <option value="Custom IT Solution / Other">Request a Custom Quote (Other Scope)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Estimated Budget (Optional)</label>
+                    <select
+                      value={itBudget}
+                      onChange={(e) => setItBudget(e.target.value)}
+                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-blue-600 focus:outline-none"
+                    >
+                      <option value="Under ₹15,000">Under ₹15,000</option>
+                      <option value="₹15,000 - ₹30,000">₹15,000 – ₹30,000</option>
+                      <option value="₹30,000 - ₹60,000">₹30,000 – ₹60,000</option>
+                      <option value="₹60,000 - ₹1,50,000">₹60,000 – ₹1,50,000</option>
+                      <option value="₹1,50,000+ Enterprise">₹1,50,000+ Enterprise Scope</option>
+                      <option value="Flexible / Based on Quotation">Flexible / Based on Quotation</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-slate-700 mb-1">Business Requirements & Scope Description</label>
+                  <textarea
+                    rows={3}
+                    value={itRequirements}
+                    onChange={(e) => setItRequirements(e.target.value)}
+                    placeholder="Briefly describe what your software or website needs to do, preferred features, existing website link if any, etc."
+                    className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-blue-600 focus:outline-none"
+                  ></textarea>
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                  <button
+                    type="submit"
+                    className="flex-1 py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-transform active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <FileCheck2 className="w-4 h-4 text-cyan-400" />
+                    <span>Submit IT Project Request</span>
+                  </button>
+
+                  <a
+                    href={generateWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-colors flex items-center justify-center gap-2"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Instant WhatsApp Connect</span>
+                  </a>
+                </div>
+
+                <div className="text-center text-[11px] text-slate-500 pt-1">
+                  Or call directly: <a href="tel:9065296294" className="font-bold text-slate-800 hover:underline">9065296294</a> / <a href="tel:+919142144940" className="font-bold text-slate-800 hover:underline">+91 91421 44940</a>
+                </div>
+
+              </form>
+            )}
+
           </div>
 
         </div>

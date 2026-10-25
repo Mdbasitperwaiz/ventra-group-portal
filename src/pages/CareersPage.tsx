@@ -60,13 +60,13 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onOpenQuoteModal }) =>
       <section className="relative py-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-2 text-amber-700 text-xs font-bold uppercase tracking-widest mb-3">
-            <Users className="w-4 h-4" /> Ventra Talent & Vendor Ecosystem
+            <Users className="w-4 h-4" /> Brentra Talent & Vendor Ecosystem
           </div>
           <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.15] max-w-4xl">
             Careers & Vendor Partner Onboarding
           </h1>
           <p className="text-base sm:text-xl text-slate-600 max-w-3xl mt-5 leading-relaxed">
-            Build your career with Eastern India's fastest-growing conglomerate, or register your transport fleet, building material manufacturing unit, or civil contracting crew as an empaneled Ventra Partner.
+            Build your career with Eastern India's fastest-growing conglomerate, or register your transport fleet, building material manufacturing unit, or civil contracting crew as an empaneled Brentra Partner.
           </p>
 
           <div className="flex items-center gap-3 pt-8">
@@ -102,7 +102,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onOpenQuoteModal }) =>
             <div className="space-y-8">
               <div className="max-w-2xl">
                 <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
-                  Current Career Openings at Ventra Group
+                  Current Career Openings at Brentra Ventures
                 </h2>
                 <p className="text-slate-600 text-sm mt-1">
                   We offer competitive industry remuneration, milestone performance bonuses, health coverage, and rapid leadership advancement across Bihar.
@@ -130,7 +130,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onOpenQuoteModal }) =>
 
                     <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
                       <a
-                        href={`mailto:careers@ventragroup.in?subject=Job%20Application:%20${encodeURIComponent(job.title)}`}
+                        href={`mailto:careers@brentraventures.com?subject=Job%20Application:%20${encodeURIComponent(job.title)}`}
                         className="text-xs font-bold text-[#0A192F] hover:underline flex items-center gap-1"
                       >
                         Apply via Email <ArrowRight className="w-3.5 h-3.5" />
@@ -148,7 +148,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onOpenQuoteModal }) =>
                   Vendor Empanelment
                 </span>
                 <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
-                  Join the Ventra Supply & Contracting Network
+                  Join the Brentra Supply & Contracting Network
                 </h2>
                 <p className="text-slate-600 text-xs sm:text-sm">
                   We guarantee predictable fortnightly billing, long-term procurement agreements, and verified institutional volume.
@@ -174,7 +174,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onOpenQuoteModal }) =>
                       onChange={(e) => setPartnerType(e.target.value)}
                       className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm"
                     >
-                      <option value="Civil Contractor / Masonry Crew">Civil Contractor / Masonry Crew (Turnkey ₹1,999)</option>
+                      <option value="Civil Contractor / Masonry Crew">Civil Contractor / Masonry Crew (Turnkey ₹1,900)</option>
                       <option value="Building Materials Supplier (Cement/TMT/Bricks)">Building Materials Supplier (Cement/TMT/Bricks)</option>
                       <option value="Poultry / Fish / Egg Farm Producer">Poultry / Fish / Egg Farm Producer</option>
                       <option value="Refrigerated Truck / Freight Operator">Refrigerated Truck / Freight Operator</option>

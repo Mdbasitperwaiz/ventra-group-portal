@@ -8,14 +8,15 @@ import {
   X, 
   Building2, 
   Cpu, 
-  Fish, 
-  Wrench, 
-  PartyPopper, 
-  Hammer, 
-  HeartPulse,
-  Sparkles,
-  ArrowRight,
-  ShieldCheck
+  Users, 
+  Droplets, 
+  Waves, 
+  Bug, 
+  Megaphone,
+  Sparkles, 
+  ArrowRight, 
+  ShieldCheck,
+  CheckCircle2
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -43,53 +44,60 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
 
   const verticalsList = [
     {
-      title: 'IT & Digital Solutions',
+      title: 'Brentra Facility (Home Services)',
+      path: '/facility-services',
+      icon: Sparkles,
+      color: '#0788FF',
+      tagline: 'Urban Company style on-demand salon, AC, cleaning, electrician from ₹79'
+    },
+    {
+      title: 'Construction Services',
+      path: '/construction-services',
+      icon: Building2,
+      color: '#B8860B',
+      tagline: 'Complete Turnkey Home Construction @ ₹1,900/sq.ft'
+    },
+    {
+      title: 'IT Solutions & Software',
       path: '/it-solutions',
       icon: Cpu,
       color: '#0284C7',
-      tagline: 'Custom SaaS, AI Workflows & Mobile Apps'
+      tagline: 'Websites (from ₹10k), Mobile Apps, ERP, CCTV & IT AMC'
     },
     {
-      title: 'Fresh Supply & FMCG Logistics',
-      path: '/fresh-fmcg',
-      icon: Fish,
+      title: 'Manpower & Housekeeping',
+      path: '/manpower-housekeeping',
+      icon: Users,
+      color: '#2563EB',
+      tagline: 'Security Guards, Cleaners, Electricians from ₹15,500/mo'
+    },
+    {
+      title: 'RO Water Purifier & AMC',
+      path: '/ro-water-purifier',
+      icon: Droplets,
+      color: '#0891B2',
+      tagline: 'Inspection ₹149, Annual AMC from ₹899 to ₹4,599'
+    },
+    {
+      title: 'Water Tank Cleaning',
+      path: '/water-tank-cleaning',
+      icon: Waves,
+      color: '#0284C7',
+      tagline: '6-Stage High-Pressure Cleaning from ₹700 (500L–1000L)'
+    },
+    {
+      title: 'Pest Control Services',
+      path: '/pest-control',
+      icon: Bug,
       color: '#059669',
-      tagline: 'Farm-Fresh Eggs, Fish, Meat & Ventra Ice Cream'
+      tagline: 'Termite (₹8/sq.ft), General Pest (₹2/sq.ft), Roach (₹999)'
     },
     {
-      title: 'Realty, Construction & Turnkey Interiors',
-      path: '/realty-infrastructure',
-      icon: Building2,
-      color: '#B8860B',
-      tagline: 'Turnkey Construction @ Flat ₹1,999/sq. ft.'
-    },
-    {
-      title: 'Multi-Service & Facility Maintenance',
-      path: '/facility-services',
-      icon: Wrench,
-      color: '#0284C7',
-      tagline: 'AC Repair, RO Services & Certified Technicians'
-    },
-    {
-      title: 'Events & Hospitality Management',
-      path: '/events-hospitality',
-      icon: PartyPopper,
+      title: 'Social Media & Marketing',
+      path: '/digital-marketing',
+      icon: Megaphone,
       color: '#DB2777',
-      tagline: 'Luxury Weddings, Summits & Gourmet Catering'
-    },
-    {
-      title: 'Building Materials & Bulk Supply',
-      path: '/realty-infrastructure#materials',
-      icon: Hammer,
-      color: '#D97706',
-      tagline: 'TMT Steel, Cement, Sand & Kiln Bricks Wholesale'
-    },
-    {
-      title: 'Healthcare & Special Ventures',
-      path: '/ventures',
-      icon: HeartPulse,
-      color: '#0284C7',
-      tagline: 'Pharmaceutical Distribution & Cold-Chain Logistics'
+      tagline: 'Monthly Growth Packages from ₹4,999, Reels & Ad Campaigns'
     }
   ];
 
@@ -101,25 +109,32 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-slate-300 font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Patna Central Desk Active (8:00 AM – 9:00 PM IST)
+              Patna Central Desk: Mon–Sun (8:00 AM – 9:00 PM IST)
             </span>
             <span className="text-slate-600">|</span>
-            <span className="text-slate-300">Corporate HQ: Bailey Road, Patna, Bihar</span>
+            <span className="text-slate-300">Office: Preven Vila, Flat 34, New Khajoorbana, Patna – 800006</span>
             <span className="text-slate-600">|</span>
             <span className="text-amber-400 font-medium flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> ₹1,999/sq.ft Turnkey Construction Guarantee
+              <ShieldCheck className="w-3.5 h-3.5" /> ₹1,900/sq.ft Turnkey Construction Guarantee
             </span>
           </div>
           <div className="flex items-center gap-5">
             <a 
-              href="tel:+919430088000" 
+              href="tel:9065296294" 
               className="flex items-center gap-1.5 text-cyan-300 hover:text-cyan-200 transition-colors font-medium"
             >
-              <Phone className="w-3.5 h-3.5" /> +91-94300-88000
+              <Phone className="w-3.5 h-3.5" /> 9065296294
             </a>
             <span className="text-slate-600">|</span>
             <a 
-              href="https://wa.me/919430088000" 
+              href="tel:+919142144940" 
+              className="flex items-center gap-1.5 text-cyan-300 hover:text-cyan-200 transition-colors font-medium"
+            >
+              <Phone className="w-3.5 h-3.5" /> +91 91421 44940
+            </a>
+            <span className="text-slate-600">|</span>
+            <a 
+              href="https://wa.me/919142144940" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-emerald-300 hover:text-emerald-200 transition-colors font-medium"
@@ -140,13 +155,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Official Logo */}
+          {/* Official Logo - Logo B and Name */}
           <Link to="/" className="flex items-center gap-3 group">
             <img 
-              src="/logo.png" 
-              alt="Ventra Group of Companies Logo" 
-              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              src="/b-logo.png" 
+              alt="Brentra Ventures PVT Logo" 
+              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-sm"
             />
+            <div className="flex flex-col">
+              <span className="font-extrabold text-lg sm:text-xl tracking-tight text-[#0A192F] leading-tight flex items-center gap-1.5 font-['Outfit']">
+                <span>BRENTRA</span>
+                <span className="text-[#0284C7]">VENTURES</span>
+              </span>
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-[0.22em] text-slate-500 uppercase -mt-0.5">
+                PRIVATE LIMITED
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -155,7 +179,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               to="/" 
               className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                 location.pathname === '/' 
-                  ? 'text-[#0A192F] bg-slate-100 font-bold' 
+                  ? 'text-[#0A192F] border-b-2 border-[#0A192F] rounded-none font-bold pb-1' 
                   : 'text-slate-700 hover:text-[#0A192F] hover:bg-slate-50'
               }`}
             >
@@ -170,7 +194,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                   : 'text-slate-700 hover:text-[#0A192F] hover:bg-slate-50'
               }`}
             >
-              Overview
+              About Us
+            </Link>
+
+            <Link 
+              to="/facility-services" 
+              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 ${
+                location.pathname === '/facility-services' || location.pathname === '/brentra-facility'
+                  ? 'text-[#0788FF] bg-blue-50 font-bold' 
+                  : 'text-slate-700 hover:text-[#0788FF] hover:bg-slate-50'
+              }`}
+            >
+              <span>Brentra Facility</span>
+              <span className="px-1.5 py-0.5 rounded-full bg-[#0788FF] text-white text-[9px] font-extrabold uppercase">
+                Urban
+              </span>
             </Link>
 
             {/* Business Verticals Mega-Menu Button */}
@@ -180,24 +218,24 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               onMouseLeave={() => setVerticalsDropdownOpen(false)}
             >
               <button 
-                type="button"
+                type="button" 
                 className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-[#0A192F] hover:bg-slate-50 transition-colors flex items-center gap-1.5 cursor-pointer"
                 onClick={() => setVerticalsDropdownOpen(!verticalsDropdownOpen)}
                 aria-expanded={verticalsDropdownOpen}
               >
-                <span>Business Verticals</span>
+                <span>Services & Rates</span>
                 <ChevronDown className={`w-4 h-4 text-amber-600 transition-transform duration-200 ${verticalsDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Mega-Menu Panel - Premium White */}
+              {/* Mega-Menu Panel */}
               {verticalsDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[740px] pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[760px] pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-3.5">
                     <div className="col-span-2 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
                       <span className="text-xs font-bold text-[#0A192F] uppercase tracking-wider flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Ventra Group Conglomerate Portfolio (7 Verticals)
+                        <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Brentra Ventures Service Verticals & Pricing
                       </span>
-                      <span className="text-[11px] font-medium text-slate-500">Headquartered in Patna, Bihar</span>
+                      <span className="text-[11px] font-medium text-slate-500">Patna, Bihar</span>
                     </div>
 
                     {verticalsList.map((vert, idx) => {
@@ -227,7 +265,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                     })}
 
                     <div className="col-span-2 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 px-1">
-                      <span>Looking for customized corporate procurement?</span>
+                      <span>Looking for institutional procurement or civil contracts?</span>
                       <button 
                         onClick={() => {
                           setVerticalsDropdownOpen(false);
@@ -235,20 +273,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                         }}
                         className="text-[#0A192F] hover:text-amber-700 font-bold flex items-center gap-1"
                       >
-                        Request Institutional AMC / Quote <ArrowRight className="w-3.5 h-3.5" />
+                        Request Instant Quote <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
                 </div>
               )}
             </div>
-
-            <a 
-              href="/#directors" 
-              className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-[#0A192F] hover:bg-slate-50 transition-colors"
-            >
-              Directors Desk
-            </a>
 
             <Link 
               to="/patna-hub" 
@@ -258,7 +289,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                   : 'text-slate-700 hover:text-[#0A192F] hover:bg-slate-50'
               }`}
             >
-              Patna Hub
+              Contact Us
             </Link>
 
             <Link 
@@ -269,7 +300,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                   : 'text-slate-700 hover:text-[#0A192F] hover:bg-slate-50'
               }`}
             >
-              Careers & Partners
+              Our Partners
             </Link>
           </nav>
 
@@ -277,10 +308,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={() => onOpenQuoteModal()}
-              className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold text-white transition-all bg-[#0A192F] hover:bg-[#1E3E62] rounded-xl shadow-md hover:shadow-lg active:scale-95 cursor-pointer uppercase tracking-wider"
+              className="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white transition-all bg-[#00ACC1] hover:bg-[#0097A7] rounded-lg shadow-md hover:shadow-xl active:scale-95 cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-amber-400" />
-              Book Service / Free Quote
+              Book a Service
             </button>
           </div>
 
@@ -303,7 +333,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
 
         </div>
 
-        {/* Mobile Navigation Drawer - Premium White */}
+        {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 shadow-xl">
             <div className="space-y-1">
@@ -314,34 +344,37 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 Home
               </Link>
               <Link
+                to="/facility-services"
+                className="flex items-center justify-between px-3 py-2 rounded-md text-base font-bold text-[#0788FF] bg-blue-50"
+              >
+                <span>Brentra Facility (Home Services)</span>
+                <span className="px-2 py-0.5 rounded-full bg-[#0788FF] text-white text-[10px] font-extrabold uppercase">
+                  Urban Co Style
+                </span>
+              </Link>
+              <Link
                 to="/corporate-overview"
                 className="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50"
               >
                 Corporate Overview
               </Link>
-              <a
-                href="/#directors"
-                className="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50"
-              >
-                Directors Desk
-              </a>
               <Link
                 to="/patna-hub"
                 className="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50"
               >
-                Patna Hub & Regional Network
+                Patna Hub & Contact
               </Link>
               <Link
                 to="/careers"
                 className="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50"
               >
-                Careers & Partners
+                Partners & Careers
               </Link>
             </div>
 
             <div className="pt-2 border-t border-slate-100">
               <div className="text-xs font-bold text-[#0A192F] uppercase tracking-wider mb-2 px-3">
-                Business Verticals
+                Service Pages & Rates
               </div>
               <div className="grid grid-cols-1 gap-1">
                 {verticalsList.map((vert, idx) => (
@@ -369,13 +402,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               </button>
               <div className="flex gap-2">
                 <a
-                  href="tel:+919430088000"
+                  href="tel:9065296294"
                   className="flex-1 py-2 px-3 text-center text-xs font-semibold bg-slate-100 text-slate-800 rounded-lg flex items-center justify-center gap-1.5"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#0A192F]" /> Call Patna Desk
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F]" /> 9065296294
                 </a>
                 <a
-                  href="https://wa.me/919430088000"
+                  href="https://wa.me/919142144940"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 py-2 px-3 text-center text-xs font-semibold bg-emerald-600 text-white rounded-lg flex items-center justify-center gap-1.5"

@@ -1,18 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   X, 
-  Sparkles, 
   CheckCircle2, 
-  Phone, 
   Send, 
-  ShieldCheck,
+  Phone, 
+  ShieldCheck, 
+  Sparkles,
   Building2,
   Cpu,
+  Users,
+  Droplets,
+  Waves,
+  Bug,
+  Megaphone,
   Fish,
   Wrench,
   PartyPopper,
   Hammer,
-  HeartPulse
+  HeartPulse,
+  MessageSquare
 } from 'lucide-react';
 import { VerticalId } from '../types';
 
@@ -22,26 +28,20 @@ interface QuoteModalProps {
   initialVertical?: string;
 }
 
-export const QuoteModal: React.FC<QuoteModalProps> = ({ 
-  isOpen, 
-  onClose, 
-  initialVertical = 'realty-infrastructure' 
+export const QuoteModal: React.FC<QuoteModalProps> = ({
+  isOpen,
+  onClose,
+  initialVertical = 'realty-infrastructure'
 }) => {
-  const [selectedVertical, setSelectedVertical] = useState<VerticalId>(initialVertical as VerticalId);
+  const [selectedVertical, setSelectedVertical] = useState<string>(initialVertical);
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [locationName, setLocationName] = useState('Patna Metro');
+  const [locationName, setLocationName] = useState('Patna, Bihar');
   const [customDetails, setCustomDetails] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [leadRef, setLeadRef] = useState('');
-
-  useEffect(() => {
-    if (initialVertical) {
-      setSelectedVertical(initialVertical as VerticalId);
-    }
-  }, [initialVertical]);
 
   if (!isOpen) return null;
 
@@ -49,11 +49,12 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Simulate SLA routing and CRM registration
     setTimeout(() => {
+      const generatedRef = 'BV-' + Math.floor(100000 + Math.random() * 900000);
+      setLeadRef(generatedRef);
       setIsSubmitting(false);
       setIsSuccess(true);
-      const generatedRef = `VNTR-${Math.floor(100000 + Math.random() * 900000)}`;
-      setLeadRef(generatedRef);
     }, 700);
   };
 
@@ -67,13 +68,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   };
 
   const verticalsConfig = [
-    { id: 'realty-infrastructure', name: 'Turnkey Construction @ ₹1,999/sq.ft', icon: Building2, color: '#B8860B' },
-    { id: 'it-solutions', name: 'IT Solutions & Custom Software', icon: Cpu, color: '#0284C7' },
-    { id: 'fresh-fmcg', name: 'Fresh FMCG & Wholesale Supply', icon: Fish, color: '#059669' },
-    { id: 'facility-services', name: 'Facility Care (AC, RO, Manpower)', icon: Wrench, color: '#0284C7' },
-    { id: 'events-hospitality', name: 'Events & Luxury Hospitality', icon: PartyPopper, color: '#DB2777' },
-    { id: 'building-materials', name: 'Bulk Building Materials Supply', icon: Hammer, color: '#D97706' },
-    { id: 'ventures', name: 'Healthcare & Special Trade', icon: HeartPulse, color: '#0284C7' },
+    { id: 'realty-infrastructure', name: 'Turnkey Construction @ ₹1,900/sq.ft', icon: Building2, color: '#B8860B' },
+    { id: 'it-solutions', name: 'IT & Software (from ₹10,000)', icon: Cpu, color: '#0284C7' },
+    { id: 'manpower-housekeeping', name: 'Manpower Supply & Housekeeping', icon: Users, color: '#2563EB' },
+    { id: 'ro-water-purifier', name: 'RO Water Purifiers & AMC (from ₹899)', icon: Droplets, color: '#0891B2' },
+    { id: 'water-tank-cleaning', name: 'Water Tank Cleaning (from ₹700)', icon: Waves, color: '#0284C7' },
+    { id: 'pest-control', name: 'Pest & Termite Control (from ₹2/sq.ft)', icon: Bug, color: '#059669' },
+    { id: 'digital-marketing', name: 'Social Media & Marketing (from ₹4,999)', icon: Megaphone, color: '#DB2777' },
   ];
 
   return (
@@ -90,10 +91,10 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
             </div>
             <div>
               <h2 className="font-heading font-bold text-lg text-white">
-                Ventra Central Inquiry & Booking Desk
+                Brentra Central Inquiry & Booking Desk
               </h2>
               <p className="text-xs text-slate-300">
-                Patna Corporate Hub • Instant Routing to Division Head
+                Preven Vila, New Khajoorbana, Patna – 800006
               </p>
             </div>
           </div>
@@ -118,54 +119,39 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   REF: {leadRef}
                 </span>
                 <h3 className="font-heading font-bold text-2xl text-[#0A192F] mt-3">
-                  Inquiry Dispatched to Patna Division Desk
+                  Service Request Dispatched!
                 </h3>
-                <p className="text-sm text-slate-600 max-w-md mx-auto mt-2">
-                  Thank you, <strong className="text-slate-900">{fullName}</strong>. Your requirement for{' '}
-                  <strong className="text-blue-900">{selectedVertical.replace('-', ' ')}</strong> has been prioritized. Our regional desk officer will contact you at <strong className="text-slate-900">{phone}</strong> within 30 minutes.
+                <p className="text-sm text-slate-600 max-w-md mx-auto mt-2 leading-relaxed">
+                  Thank you, <strong className="text-slate-900">{fullName}</strong>. Your requirement has been assigned to our Patna operations team. You will receive an arrival or quotation call on <strong className="text-slate-900">{phone}</strong>.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 max-w-md mx-auto text-left text-xs space-y-2 text-slate-700">
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Target Area:</span>
-                  <span className="text-slate-900 font-semibold">{locationName}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Lead Status:</span>
-                  <span className="text-emerald-700 font-bold">Priority Fast-Track</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Central Helpline:</span>
-                  <span className="text-[#0A192F] font-mono font-bold">+91-94300-88000</span>
-                </div>
-              </div>
-
-              <div className="flex justify-center gap-4 pt-2">
+              <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
                 <a
-                  href={`https://wa.me/919430088000?text=Hello%20Ventra%20Group,%20I%20just%20submitted%20inquiry%20${leadRef}%20for%20${selectedVertical}`}
+                  href={`https://wa.me/919142144940?text=Hello%20Brentra,%20I%20just%20submitted%20request%20${leadRef}%20for%20${selectedVertical}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 shadow-md cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs"
                 >
-                  Confirm on WhatsApp Now
+                  <MessageSquare className="w-4 h-4" /> Track on WhatsApp
                 </a>
                 <button
                   onClick={handleReset}
-                  className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#0A192F] text-white font-bold text-xs"
                 >
-                  Done & Close
+                  Close & Continue Browsing
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Vertical Selector Tabs */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              
+              {/* Vertical Selector */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wider">
-                  Select Business Division
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  1. Select Target Service Vertical
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {verticalsConfig.map((item) => {
                     const isCurrent = selectedVertical === item.id;
                     const Icon = item.icon;
@@ -173,10 +159,10 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       <button
                         type="button"
                         key={item.id}
-                        onClick={() => setSelectedVertical(item.id as VerticalId)}
+                        onClick={() => setSelectedVertical(item.id)}
                         className={`p-2.5 rounded-xl text-left border text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                           isCurrent 
-                            ? 'bg-slate-100 border-[#0A192F] text-[#0A192F] shadow-sm' 
+                            ? 'bg-slate-100 border-[#0A192F] text-[#0A192F] shadow-sm font-bold' 
                             : 'bg-white border-slate-200 text-slate-600 hover:text-black hover:bg-slate-50'
                         }`}
                       >
@@ -192,13 +178,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between text-slate-700">
                 <span className="flex items-center gap-1.5 font-medium">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  {selectedVertical === 'realty-infrastructure' && 'Includes Free Site Inspection & Cost Estimate at ₹1,999/sq.ft'}
-                  {selectedVertical === 'it-solutions' && 'Includes Free 30-Min Architecture Discovery Session'}
-                  {selectedVertical === 'fresh-fmcg' && 'Commercial wholesale morning delivery slot'}
-                  {selectedVertical === 'facility-services' && 'Immediate emergency dispatch within 60 minutes in Patna'}
-                  {selectedVertical === 'events-hospitality' && 'Comprehensive decor, acoustic & catering quote'}
-                  {selectedVertical === 'building-materials' && 'Factory-direct wholesale billing for TMT, cement & sand'}
-                  {selectedVertical === 'ventures' && 'Institutional distributor partnership & healthcare supplies'}
+                  {selectedVertical === 'realty-infrastructure' && 'Includes Free Site Inspection & Cost Estimate at ₹1,900/sq.ft'}
+                  {selectedVertical === 'it-solutions' && 'Includes Free Technical Architecture & SOW Review'}
+                  {selectedVertical === 'manpower-housekeeping' && 'Verified background-checked staff replacement guarantee'}
+                  {selectedVertical === 'ro-water-purifier' && 'Doorstep technician inspection @ ₹149 in Patna'}
+                  {selectedVertical === 'water-tank-cleaning' && '6-stage mechanized German pressure jetting process'}
+                  {selectedVertical === 'pest-control' && 'Odorless herbal treatment safe for children & pets'}
+                  {selectedVertical === 'digital-marketing' && 'Customized organic growth & paid ad proposal'}
                 </span>
               </div>
 
@@ -226,7 +212,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+91 98765 43210"
+                    placeholder="9065296294"
                     className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-[#0A192F] focus:outline-none focus:ring-1 focus:ring-[#0A192F]"
                   />
                 </div>
@@ -235,13 +221,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Email Address (Optional)
+                    Email Address
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@example.com"
+                    placeholder="name@company.com"
                     className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-[#0A192F] focus:outline-none focus:ring-1 focus:ring-[#0A192F]"
                   />
                 </div>
@@ -254,7 +240,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     required
                     value={locationName}
                     onChange={(e) => setLocationName(e.target.value)}
-                    placeholder="e.g. Bailey Road, Danapur, Kankarbagh"
+                    placeholder="e.g. New Khajoorbana, Bailey Road, Patna"
                     className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-[#0A192F] focus:outline-none focus:ring-1 focus:ring-[#0A192F]"
                   />
                 </div>
@@ -269,17 +255,17 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   rows={3}
                   value={customDetails}
                   onChange={(e) => setCustomDetails(e.target.value)}
-                  placeholder="Please mention specific details, quantities, or preferred inspection date/time..."
+                  placeholder="Please mention specific details, quantities, preferred date/time..."
                   className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm focus:border-[#0A192F] focus:outline-none focus:ring-1 focus:ring-[#0A192F]"
                 />
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <a
-                  href="tel:+919430088000"
+                  href="tel:9065296294"
                   className="text-xs text-[#0A192F] hover:underline flex items-center gap-1.5 font-bold"
                 >
-                  <Phone className="w-3.5 h-3.5 text-amber-600" /> Helpline: +91-94300-88000
+                  <Phone className="w-3.5 h-3.5 text-amber-600" /> Helpline: 9065296294 / 9142144940
                 </a>
 
                 <button

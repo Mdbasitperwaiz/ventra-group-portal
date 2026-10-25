@@ -37,7 +37,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     id: 3,
     verticalId: 'realty-infrastructure',
     tag: 'Flagship Construction Program',
-    headline: 'Complete Turnkey Construction @ Flat ₹1,999 / sq. ft.',
+    headline: 'Complete Turnkey Construction Starting @ ₹1,900 / sq. ft.',
     subtext: 'From foundation to final paint, modular kitchens & luxury interiors. Transparent, on-time, zero hidden costs in Bihar.',
     primaryCtaText: 'Calculate Construction Cost',
     primaryCtaLink: '/realty-infrastructure#calculator',
@@ -105,7 +105,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     subtext: 'Strategic medicine wholesale distribution networks, cold-chain solutions, and forward-looking industrial logistics.',
     primaryCtaText: 'Explore Venture Network',
     primaryCtaLink: '/ventures',
-    secondaryCtaText: 'Partner With Ventra',
+    secondaryCtaText: 'Partner With Brentra',
     secondaryCtaLink: '/careers#partner',
     badge: 'Pan-Bihar Distribution Reach',
     bgGradient: 'from-[#0A192F] via-[#102B3F] to-[#0A192F]',
@@ -121,9 +121,9 @@ export const DIRECTORS: Director[] = [
     name: 'Shri Alok Kumar Verma',
     role: 'Managing Director',
     division: 'Strategy, Capital Allocation & Group Governance',
-    focus: 'Corporate governance, capital allocation, long-term enterprise vision, making Ventra an economic powerhouse in Eastern India.',
+    focus: 'Corporate governance, capital allocation, long-term enterprise vision, making Brentra an economic powerhouse in Eastern India.',
     quote: 'Our core mandate is establishing institutional excellence across sectors—building transparent, dependable businesses that solve everyday infrastructure and lifestyle needs.',
-    message: 'We founded Ventra with the firm conviction that Bihar deserves corporate conglomerates operating with the governance standards of Tata and the agility of modern tech startups. Every vertical under our umbrella stands for absolute accountability to the consumer.',
+    message: 'We founded Brentra Ventures with the firm conviction that Bihar deserves corporate conglomerates operating with the governance standards of Tata and the agility of modern tech startups. Every vertical under our umbrella stands for absolute accountability to the consumer.',
     initials: 'AV',
     accentColor: '#00D2DF'
   },
@@ -133,8 +133,8 @@ export const DIRECTORS: Director[] = [
     role: 'Director – Technology & Digital Transformation',
     division: 'Software Engineering, AI Workflows & IT Solutions',
     focus: 'Software architecture, AI automation, seamless customer journey, and operational digitisation across all group companies.',
-    quote: 'Technology is not an isolated unit at Ventra; it is the nervous system connecting our logistics, construction, and client delivery.',
-    message: 'From real-time IoT tracking in our refrigerated FMCG trucks to proprietary estimation algorithms for ₹1,999/sq.ft turnkey homes, our engineering teams build software that drives real-world business efficiency and speed.',
+    quote: 'Technology is not an isolated unit at Brentra; it is the nervous system connecting our logistics, construction, and client delivery.',
+    message: 'From real-time IoT tracking in our refrigerated FMCG trucks to proprietary estimation algorithms for ₹1,900/sq.ft turnkey homes, our engineering teams build software that drives real-world business efficiency and speed.',
     initials: 'RR',
     accentColor: '#38BDF8'
   },
@@ -143,9 +143,9 @@ export const DIRECTORS: Director[] = [
     name: 'Sanjeev N. Singh',
     role: 'Director – Infrastructure, Realty & Materials',
     division: 'Civil Engineering, Turnkey Construction & Raw Material Supply',
-    focus: 'Engineering integrity, the ₹1,999/sq.ft turnkey delivery promise, vendor management, and strict safety standards.',
+    focus: 'Engineering integrity, the ₹1,900/sq.ft turnkey delivery promise, vendor management, and strict safety standards.',
     quote: 'We demystify real estate and construction. Delivering quality homes at predictable, fair pricing without compromise is our pledge to every family.',
-    message: 'Home construction in Eastern India had been plagued by opaque pricing and indefinite contractor delays. Our standardized ₹1,999/sq.ft blueprint with premium TMT steel, branded modular interiors, and milestone-linked audits sets a new benchmark.',
+    message: 'Home construction in Eastern India had been plagued by opaque pricing and indefinite contractor delays. Our standardized ₹1,900/sq.ft blueprint with premium TMT steel, branded modular interiors, and milestone-linked audits sets a new benchmark.',
     initials: 'SS',
     accentColor: '#C5A880'
   },
@@ -164,7 +164,7 @@ export const DIRECTORS: Director[] = [
 
 export const PARENT_STATS = [
   { label: 'Diversified Business Verticals', value: '7', suffix: ' Conglomerate Units', sub: 'Unified governance & leadership' },
-  { label: 'Turnkey Construction Benchmark', value: '₹1,999', suffix: ' / sq. ft.', sub: 'Standardized luxury turnkey guarantee' },
+  { label: 'Turnkey Construction Benchmark', value: 'Starting ₹1,900', suffix: ' / sq. ft.', sub: 'Standardized luxury turnkey guarantee' },
   { label: 'On-Demand Service Response', value: '<60', suffix: ' Mins', sub: 'Rapid technician TAT in Patna metro' },
   { label: 'Verified Crew & Sourced Goods', value: '100%', suffix: ' Certified', sub: 'Zero compromise on safety & quality' },
   { label: 'Happy Families & Businesses Served', value: '25,000+', suffix: '', sub: 'Across Patna & Bihar districts' },
@@ -177,7 +177,7 @@ export const DAILY_RATES = [
   { item: 'Hygienic Processed Chicken (Skinless Cut)', rate: '₹185', unit: 'Per Kg Pack', change: '-1.5%', status: 'In Cold Storage' },
   { item: 'Fresh Bihar River Rohu Fish (1.5 - 2.5kg size)', rate: '₹220', unit: 'Per Kg', change: '+2.0%', status: 'Daily River Catch' },
   { item: 'Premium Foxnut (Makhana) Jumbo 5-Suta', rate: '₹940', unit: 'Per Kg (50kg Bag)', change: 'Stable', status: 'Direct Mithila Farm' },
-  { item: 'Ventra Gourmet Ice Cream (Bulk 4L Catering Tub)', rate: '₹480', unit: 'Per 4L Tub', change: 'Promo', status: '8 Gourmet Flavors' }
+  { item: 'Brentra Gourmet Ice Cream (Bulk 4L Catering Tub)', rate: '₹480', unit: 'Per 4L Tub', change: 'Promo', status: '8 Gourmet Flavors' }
 ];
 
 export const CONSTRUCTION_INCLUSIONS = [

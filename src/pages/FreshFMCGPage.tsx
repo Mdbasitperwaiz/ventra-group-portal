@@ -39,7 +39,7 @@ export const FreshFMCGPage: React.FC<FreshFMCGPageProps> = ({ onOpenQuoteModal }
                         (makhanaKg * makhanaRate);
 
   const generateWhatsAppMessage = () => {
-    const text = `*VENTRA FRESH WHOLESALE ORDER INQUIRY*%0A` +
+    const text = `*BRENTRA FRESH WHOLESALE ORDER INQUIRY*%0A` +
       `--------------------------------%0A` +
       `*Buyer Type:* ${buyerType}%0A` +
       `*Delivery Location:* ${deliveryLocation}%0A` +
@@ -49,7 +49,7 @@ export const FreshFMCGPage: React.FC<FreshFMCGPageProps> = ({ onOpenQuoteModal }
       (eggTrays > 0 ? `• Farm Eggs: ${eggTrays} Trays (${eggTrays * 30} pcs) @ ₹${eggTrays * eggRate}%0A` : '') +
       (chickenKg > 0 ? `• Processed Chicken: ${chickenKg} kg @ ₹${chickenKg * chickenRate}%0A` : '') +
       (fishKg > 0 ? `• Fresh River Rohu Fish: ${fishKg} kg @ ₹${fishKg * fishRate}%0A` : '') +
-      (iceCreamTubs > 0 ? `• Ventra Ice Cream (4L Tubs): ${iceCreamTubs} tubs @ ₹${iceCreamTubs * iceCreamRate}%0A` : '') +
+      (iceCreamTubs > 0 ? `• Brentra Ice Cream (4L Tubs): ${iceCreamTubs} tubs @ ₹${iceCreamTubs * iceCreamRate}%0A` : '') +
       (makhanaKg > 0 ? `• Jumbo Makhana: ${makhanaKg} kg @ ₹${makhanaKg * makhanaRate}%0A` : '') +
       `--------------------------------%0A` +
       `*Est. Wholesale Total:* ₹${totalEstimate.toLocaleString('en-IN')}%0A` +
@@ -65,7 +65,7 @@ export const FreshFMCGPage: React.FC<FreshFMCGPageProps> = ({ onOpenQuoteModal }
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="flex items-center gap-2 text-emerald-800 text-xs font-bold uppercase tracking-widest mb-3">
-            <Fish className="w-4 h-4" /> Ventra Fresh & FMCG Logistics Division
+            <Fish className="w-4 h-4" /> Brentra Fresh & FMCG Logistics Division
           </div>
 
           <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.15] max-w-4xl">
@@ -138,7 +138,7 @@ export const FreshFMCGPage: React.FC<FreshFMCGPageProps> = ({ onOpenQuoteModal }
 
             <div className="flex items-center gap-3">
               <button
-                onClick={() => alert("Downloading Ventra_Daily_Patna_RateCard.pdf...")}
+                onClick={() => alert("Downloading Brentra_Daily_Patna_RateCard.pdf...")}
                 className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold uppercase tracking-wider flex items-center gap-2 border border-slate-300 shadow-sm cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5 text-emerald-600" /> Download PDF Rate Card
@@ -230,7 +230,7 @@ export const FreshFMCGPage: React.FC<FreshFMCGPageProps> = ({ onOpenQuoteModal }
               },
               {
                 icon: IceCream,
-                title: 'Ventra Ice Cream Division',
+                title: 'Brentra Ice Cream Division',
                 desc: 'Premium commercial 4-Liter & 10-Liter tubs in 12 gourmet flavors for wedding caterers, banquet venues, and ice cream parlors with on-site cold carts.',
                 stats: '100% Pure Dairy Cream'
               },
@@ -398,14 +398,14 @@ export const FreshFMCGPage: React.FC<FreshFMCGPageProps> = ({ onOpenQuoteModal }
                 </div>
               </div>
 
-              {/* Ventra Ice Cream */}
+              {/* Brentra Ice Cream */}
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
                     <IceCream className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-[#0A192F]">Ventra Gourmet Ice Cream (4L Tub)</div>
+                    <div className="text-sm font-bold text-[#0A192F]">Brentra Gourmet Ice Cream (4L Tub)</div>
                     <div className="text-xs text-slate-500 font-mono">₹480 per 4L Tub</div>
                   </div>
                 </div>

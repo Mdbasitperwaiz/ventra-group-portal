@@ -76,7 +76,7 @@ export const EventsHospitalityPage: React.FC<EventsHospitalityPageProps> = ({ on
       title: 'Traditional Bihari Royal Bhoj & Global Fusion',
       location: 'Bailey Road Banquet Arena',
       guests: '2,500 Guests',
-      tag: 'Live Chaat & Gourmet Ventra Ice Cream Bars',
+      tag: 'Live Chaat & Gourmet Brentra Ice Cream Bars',
       accent: '#059669'
     }
   ];
@@ -98,7 +98,7 @@ export const EventsHospitalityPage: React.FC<EventsHospitalityPageProps> = ({ on
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="flex items-center gap-2 text-pink-700 text-xs font-bold uppercase tracking-widest mb-3">
-            <PartyPopper className="w-4 h-4" /> Ventra Luxury Events & Institutional Hospitality
+            <PartyPopper className="w-4 h-4" /> Brentra Luxury Events & Institutional Hospitality
           </div>
 
           <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.15] max-w-4xl">
@@ -182,7 +182,7 @@ export const EventsHospitalityPage: React.FC<EventsHospitalityPageProps> = ({ on
               {
                 icon: UtensilsCrossed,
                 title: 'Institutional Gourmet Catering',
-                desc: 'Five-star catering brigade serving 100 to 5,000+ guests. Authentic Awadhi, Royal Bihari, Pan-Asian, Italian live counters, and exclusive Ventra ice cream dessert lounges.',
+                desc: 'Five-star catering brigade serving 100 to 5,000+ guests. Authentic Awadhi, Royal Bihari, Pan-Asian, Italian live counters, and exclusive Brentra ice cream dessert lounges.',
                 bullets: ['Live chef counters & tandoor', 'Strict FSSAI hygienic protocols', 'Customized cutlery & royal service', 'On-site refrigeration trucks']
               }
             ].map((div, idx) => {
@@ -239,7 +239,7 @@ export const EventsHospitalityPage: React.FC<EventsHospitalityPageProps> = ({ on
                 Interactive Cost & Date Checker
               </span>
               <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
-                Plan Your Event with Ventra Hospitality
+                Plan Your Event with Brentra Hospitality
               </h2>
               <p className="text-xs sm:text-sm text-slate-600">
                 Input your anticipated guest count and preferences to reserve dates and receive an itemized production & catering blueprint.

@@ -21,7 +21,7 @@ export const VenturesPage: React.FC<VenturesPageProps> = ({ onOpenQuoteModal }) 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="flex items-center gap-2 text-blue-800 text-xs font-bold uppercase tracking-widest mb-3">
-            <HeartPulse className="w-4 h-4" /> Ventra Special Ventures & Healthcare Logistics
+            <HeartPulse className="w-4 h-4" /> Brentra Special Ventures & Healthcare Logistics
           </div>
 
           <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.15] max-w-4xl">
@@ -37,7 +37,7 @@ export const VenturesPage: React.FC<VenturesPageProps> = ({ onOpenQuoteModal }) 
               onClick={() => onOpenQuoteModal('ventures')}
               className="px-6 py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer"
             >
-              Partner with Ventra Ventures
+              Partner with Brentra Ventures
             </button>
             <a
               href="tel:+919430088000"

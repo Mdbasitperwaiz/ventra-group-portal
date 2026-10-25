@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Building2, 
-  Cpu, 
+  Cpu,
   Fish, 
-  Wrench, 
-  PartyPopper, 
+  Wrench,
+  PartyPopper,
   Hammer, 
-  HeartPulse, 
+  HeartPulse,
   ArrowRight, 
   ShieldCheck, 
   Sparkles, 
@@ -46,7 +46,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
       icon: Fish,
       color: '#059669',
       tagline: 'Farm-to-Door Wholesale Supply Chain',
-      highlights: ['Daily Fresh Farm Eggs Wholesale', 'Hygienic Processed Chicken & Mutton', 'Fresh Bihar River Fish Catch', 'Ventra Gourmet Ice Cream Tubs'],
+      highlights: ['Daily Fresh Farm Eggs Wholesale', 'Hygienic Processed Chicken & Mutton', 'Fresh Bihar River Fish Catch', 'Brentra Gourmet Ice Cream Tubs'],
       badge: 'Cold-Chain Transport'
     },
     {
@@ -55,9 +55,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
       link: '/realty-infrastructure',
       icon: Building2,
       color: '#B8860B',
-      tagline: 'Complete Turnkey Construction @ ₹1,999 / sq. ft.',
+      tagline: 'Complete Turnkey Construction Starting @ ₹1,900 / sq. ft.',
       highlights: ['Full RCC Foundation & 550D TMT Steel', 'Branded Kajaria Tiles & Granite Counter', 'Modular Kitchen & False Ceiling Included', '10-Year Structural Safety Warranty'],
-      badge: 'Flat ₹1,999/sq.ft'
+      badge: 'From ₹1,900/sq.ft'
     },
     {
       id: 'facility-services',
@@ -103,12 +103,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
 
   const faqs = [
     {
-      q: 'What is included in the ₹1,999/sq. ft. Turnkey Construction package?',
-      a: 'Our ₹1,999/sq.ft package is 100% turnkey. It includes structural architectural drawings, soil testing, excavation, RCC frame using 550D Grade-A TMT steel and 53-grade cement, kiln-burned red bricks, premium vitrified tiles (Kajaria/Somany), granite kitchen countertops, concealed Finolex wiring, Havells modular switches, Jaquar sanitaryware, complete Asian Paints Royale emulsion with putty base, AND a modular kitchen layout with designer false ceilings. Zero hidden costs.'
+      q: 'What is included in the starting ₹1,900/sq. ft. Turnkey Construction package?',
+      a: 'Our ₹1,900/sq.ft package is 100% turnkey. It includes structural architectural drawings, soil testing, excavation, RCC frame using 550D Grade-A TMT steel and 53-grade cement, kiln-burned red bricks, premium vitrified tiles (Kajaria/Somany), granite kitchen countertops, concealed Finolex wiring, Havells modular switches, Jaquar sanitaryware, complete Asian Paints Royale emulsion with putty base, AND a modular kitchen layout with designer false ceilings. Zero hidden costs.'
     },
     {
-      q: 'How does Ventra Group manage daily wholesale deliveries for fresh FMCG?',
-      a: 'We operate our own dedicated refrigerated cold-chain fleet originating from our central agricultural hub in Patna. We supply hotels, cloud kitchens, retail supermarkets, and banquet halls with fresh eggs, processed poultry, river fish, gourmet makhana, and Ventra ice creams on scheduled morning slots with complete FSSAI batch testing.'
+      q: 'How does Brentra Ventures manage daily wholesale deliveries for fresh FMCG?',
+      a: 'We operate our own dedicated refrigerated cold-chain fleet originating from our central agricultural hub in Patna. We supply hotels, cloud kitchens, retail supermarkets, and banquet halls with fresh eggs, processed poultry, river fish, gourmet makhana, and Brentra ice creams on scheduled morning slots with complete FSSAI batch testing.'
     },
     {
       q: 'How fast can emergency facility technicians (AC, RO, electrical) arrive in Patna?',
@@ -129,127 +129,145 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
       {/* 2. Parent Company Impact & Operational Statistics */}
       <ParentStats />
 
-      {/* 3. Conglomerate Verticals Showcase Grid - Premium White */}
-      <section className="py-20 bg-white relative border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold uppercase tracking-widest">
-              <Layers className="w-3.5 h-3.5 text-amber-600" /> 7 Dedicated Divisions
-            </div>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#0A192F] tracking-tight">
-              One Vision • Multiple Businesses • Bigger Future
+      {/* 3. Our Enterprises & Services — Image Card Row */}
+      <section className="py-14 bg-white border-b border-slate-200">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center mb-10">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#0A192F] tracking-wide uppercase">
+              Our Enterprises &amp; Services
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
-              Explore how each specialized group company operates autonomously with institutional excellence while drawing strength from Ventra Group's centralized capital and technology backbone.
-            </p>
           </div>
 
-          {/* Grid of 7 Business Verticals */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {verticalsOverview.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.id}
-                  className="bg-white border border-slate-200 hover:border-slate-400 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-xl hover:-translate-y-1"
-                >
-                  <div>
-                    {/* Header with Icon and Badge */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div 
-                        className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 shadow-sm"
-                        style={{ backgroundColor: `${item.color}15`, color: item.color }}
-                      >
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <span 
-                        className="text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono bg-slate-100 text-slate-700 border border-slate-200"
-                      >
-                        {item.badge}
-                      </span>
+          {/* Horizontal scrollable image card row */}
+          <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory">
+            {[
+              {
+                id: 'it-solutions',
+                title: 'IT & Digital Solutions',
+                image: '/img-it.jpg',
+                ctaText: 'Explore Service',
+                ctaLink: '/it-solutions',
+                accentColor: '#0284C7',
+                badge: null,
+              },
+              {
+                id: 'fresh-fmcg',
+                title: 'Fresh Supply & FMCG',
+                image: '/img-fmcg.jpg',
+                ctaText: 'View Pricing',
+                ctaLink: '/fresh-fmcg',
+                accentColor: '#059669',
+                badge: null,
+              },
+              {
+                id: 'realty-infrastructure',
+                title: 'Realty, Construction & Turnkey Interiors',
+                image: '/img-realty.jpg',
+                ctaText: 'Get Estimates',
+                ctaLink: '/realty-infrastructure',
+                accentColor: '#B8860B',
+                badge: 'Turnkey Construction at ₹1,999/sq. ft.',
+              },
+              {
+                id: 'facility-services',
+                title: 'Multi-Service & Facility Maintenance',
+                image: '/img-facility.jpg',
+                ctaText: 'Book Technician',
+                ctaLink: '/facility-services',
+                accentColor: '#0284C7',
+                badge: 'AC technicians & RO Systems',
+              },
+              {
+                id: 'events-hospitality',
+                title: 'Events & Hospitality',
+                image: '/img-events.jpg',
+                ctaText: 'Book Event',
+                ctaLink: '/events-hospitality',
+                accentColor: '#DB2777',
+                badge: null,
+              },
+              {
+                id: 'building-materials',
+                title: 'Building Materials Sourcing',
+                image: '/img-materials.jpg',
+                ctaText: 'Request Quote',
+                ctaLink: '/realty-infrastructure#materials',
+                accentColor: '#D97706',
+                badge: null,
+              },
+              {
+                id: 'ventures',
+                title: 'Healthcare, Wholesale & Partners',
+                image: '/img-healthcare.jpg',
+                ctaText: 'Explore Division',
+                ctaLink: '/ventures',
+                accentColor: '#7C3AED',
+                badge: null,
+              },
+            ].map((card, idx) => (
+              <div
+                key={card.id}
+                className="snap-start shrink-0 flex flex-col rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+                style={{ width: '210px' }}
+              >
+                {/* Image */}
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07111F]/60 via-transparent to-transparent" />
+                  {/* Badge overlay */}
+                  {card.badge && (
+                    <div
+                      className="absolute bottom-2 right-2 px-2 py-1 rounded text-[10px] font-bold text-white text-center leading-tight"
+                      style={{ backgroundColor: card.accentColor }}
+                    >
+                      {card.badge}
                     </div>
-
-                    <h3 className="font-heading font-bold text-xl text-[#0A192F] group-hover:text-blue-900 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-1 mb-5 font-medium">
-                      {item.tagline}
-                    </p>
-
-                    {/* Bullet Highlights */}
-                    <ul className="space-y-2.5 pt-2 border-t border-slate-100">
-                      {item.highlights.map((h, i) => (
-                        <li key={i} className="text-xs text-slate-700 flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between">
-                    <Link
-                      to={item.link}
-                      className="text-xs font-bold text-[#0A192F] hover:text-amber-700 flex items-center gap-1.5 group-hover:underline"
-                    >
-                      <span>Explore Vertical</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    </Link>
-
-                    <button
-                      onClick={() => onOpenQuoteModal(item.id)}
-                      className="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold transition-colors cursor-pointer"
-                    >
-                      Fast Quote
-                    </button>
-                  </div>
+                  )}
+                  {/* Active indicator for first card */}
+                  {idx === 0 && (
+                    <div className="absolute inset-0 ring-2 ring-[#0284C7] ring-inset rounded-2xl pointer-events-none" />
+                  )}
                 </div>
-              );
-            })}
 
-            {/* 8th Card: Central Conglomerate Desk */}
-            <div className="bg-[#0A192F] border border-[#1E3E62] rounded-2xl p-6 flex flex-col justify-between shadow-xl text-white relative overflow-hidden">
-              <div className="space-y-3">
-                <span className="text-[10px] font-bold px-2.5 py-1 rounded bg-amber-400/20 text-amber-300 border border-amber-400/30 uppercase tracking-widest">
-                  Enterprise Solution
-                </span>
-                <h3 className="font-heading font-black text-2xl text-white">
-                  Corporate Procurement & Multi-Unit AMC
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Looking for institutional contracts, turnkey real estate developments, bulk food provisioning, or enterprise software outsourcing? Speak with our Managing Director’s Office.
-                </p>
-                <div className="pt-2 text-xs text-slate-300 space-y-1.5">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" /> Single Master Service Level Agreement
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-cyan-400" /> Dedicated Key Account Executive in Patna
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-6">
-                <button
-                  onClick={() => onOpenQuoteModal()}
-                  className="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-[#0A192F] font-bold text-xs uppercase tracking-wider shadow-lg transition-transform active:scale-95 cursor-pointer"
+                {/* Title */}
+                <div
+                  className="px-3 py-2.5 text-sm font-bold text-white text-center leading-snug"
+                  style={{ backgroundColor: idx === 0 ? '#0A192F' : '#1E293B' }}
                 >
-                  Schedule Corporate Meeting
-                </button>
-              </div>
-            </div>
+                  {card.title}
+                </div>
 
+                {/* CTA */}
+                <div className="bg-white px-3 pb-3 pt-2.5 flex justify-center">
+                  <Link
+                    to={card.ctaLink}
+                    className="px-4 py-1.5 rounded border-2 text-xs font-bold transition-all hover:scale-105 active:scale-95 text-center"
+                    style={{
+                      borderColor: card.accentColor,
+                      color: card.accentColor,
+                    }}
+                  >
+                    [{card.ctaText}]
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>
       </section>
 
+
       {/* 4. Board of Directors Desk (The Leadership Quad) */}
       <DirectorsQuad />
 
-      {/* 5. Flagship Program Spotlight: ₹1,999/sq.ft Turnkey Construction */}
+      {/* 5. Flagship Program Spotlight: ₹1,900/sq.ft Turnkey Construction */}
       <section className="py-20 bg-[#F8FAFC] relative overflow-hidden border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -258,18 +276,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
               
               <div className="lg:col-span-7 space-y-5">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold uppercase tracking-widest">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-600" /> Ventra Infrastructure Flagship
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600" /> Brentra Infrastructure Flagship
                 </div>
 
                 <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-[#0A192F] tracking-tight leading-tight">
-                  Complete Turnkey Construction @ Flat{' '}
+                  Complete Turnkey Construction Starting @{' '}
                   <span className="text-amber-800 bg-amber-50 px-2 py-0.5 rounded-lg border border-amber-200 inline-block my-1">
-                    ₹1,999 / sq. ft.
+                    ₹1,900 / sq. ft.
                   </span>
                 </h2>
 
                 <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-                  Say goodbye to contractor disputes, sudden budget overruns, and inferior building materials. Ventra Realty delivers complete homes ready for move-in across Patna and Bihar with structural grade TMT steel, Kajaria tiles, branded modular kitchens, and a 10-year warranty.
+                  Say goodbye to contractor disputes, sudden budget overruns, and inferior building materials. Brentra Realty delivers complete homes ready for move-in across Patna and Bihar with structural grade TMT steel, Kajaria tiles, branded modular kitchens, and a 10-year warranty.
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
@@ -310,7 +328,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
               {/* Inclusions summary preview */}
               <div className="lg:col-span-5 bg-slate-50 p-6 sm:p-7 rounded-2xl border border-slate-200 space-y-4">
                 <h3 className="font-heading font-bold text-base text-[#0A192F] border-b border-slate-200 pb-3 flex items-center justify-between">
-                  <span>What's Included in ₹1,999/sq.ft</span>
+                  <span>What's Included in ₹1,900/sq.ft</span>
                   <span className="text-xs text-amber-700 font-mono font-bold">Zero Extra Cost</span>
                 </h3>
 
@@ -365,7 +383,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
               </h2>
 
               <p className="text-slate-600 text-base leading-relaxed">
-                From our corporate headquarters on Bailey Road to our refrigerated logistics yard in Danapur and building material depots across Patna rural corridors, Ventra Group maintains instant ground reach.
+                From our corporate headquarters on Bailey Road to our refrigerated logistics yard in Danapur and building material depots across Patna rural corridors, Brentra Ventures maintains instant ground reach.
               </p>
 
               <div className="space-y-3 pt-2">
@@ -374,7 +392,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
                     <Building2 className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-[#0A192F]">Ventra Corporate Towers (HQ)</h3>
+                    <h3 className="text-sm font-bold text-[#0A192F]">Brentra Corporate Towers (HQ)</h3>
                     <p className="text-xs text-slate-500 mt-0.5">Bailey Road, Patna — Executive Boardroom, IT Labs, Architecture Studios.</p>
                   </div>
                 </div>

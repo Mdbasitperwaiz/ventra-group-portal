@@ -18,7 +18,7 @@ export const DirectorsQuad: React.FC = () => {
             From the Desk of the Directors
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
-            Ventra Group is steered by a multidisciplinary leadership quad combining institutional governance, technological foresight, civil engineering rigor, and cold-chain supply precision.
+            Brentra Ventures is steered by a multidisciplinary leadership quad combining institutional governance, technological foresight, civil engineering rigor, and cold-chain supply precision.
           </p>
         </div>
 
@@ -109,7 +109,7 @@ export const DirectorsQuad: React.FC = () => {
                     "{selected.message}"
                   </p>
                   <p className="text-xs text-slate-500 pt-1">
-                    Portfolio: <strong className="text-slate-800">{selected.division}</strong> | Operating out of Ventra Corporate Towers, Bailey Road, Patna.
+                    Portfolio: <strong className="text-slate-800">{selected.division}</strong> | Operating out of Brentra Corporate Towers, Bailey Road, Patna.
                   </p>
                 </div>
                 <div className="shrink-0">

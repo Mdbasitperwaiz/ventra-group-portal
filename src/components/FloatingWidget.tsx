@@ -36,7 +36,7 @@ export const FloatingWidget: React.FC<FloatingWidgetProps> = ({ onOpenQuoteModal
         </button>
       )}
 
-      {/* Floating Action Strip - Premium White */}
+      {/* Floating Action Strip */}
       {isMinimized ? (
         <button
           onClick={() => setIsMinimized(false)}
@@ -49,17 +49,17 @@ export const FloatingWidget: React.FC<FloatingWidgetProps> = ({ onOpenQuoteModal
           
           {/* Schedule Site Visit / Service Call Button */}
           <button
-            onClick={() => onOpenQuoteModal('realty-infrastructure')}
+            onClick={() => onOpenQuoteModal('construction-services')}
             className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs shadow-md transition-transform active:scale-95 cursor-pointer"
           >
             <CalendarClock className="w-4 h-4 text-amber-400" />
-            <span className="hidden sm:inline">Schedule Visit / Call</span>
-            <span className="sm:hidden">Book Visit</span>
+            <span className="hidden sm:inline">Book Service / Quote</span>
+            <span className="sm:hidden">Quote</span>
           </button>
 
           {/* Direct WhatsApp Instant Support */}
           <a
-            href="https://wa.me/919430088000?text=Hello%20Ventra%20Group,%20I%20am%20inquiring%20about%20your%20services%20in%20Patna."
+            href="https://wa.me/919142144940?text=Hello%20Brentra%20Ventures,%20I%20am%20inquiring%20about%20your%20services."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition-colors"
@@ -71,12 +71,12 @@ export const FloatingWidget: React.FC<FloatingWidgetProps> = ({ onOpenQuoteModal
 
           {/* Direct Helpline Click-to-Call */}
           <a
-            href="tel:+919430088000"
+            href="tel:9065296294"
             className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#0A192F] font-bold text-xs border border-slate-200 transition-colors"
             title="Call Patna Central Desk"
           >
             <Phone className="w-4 h-4 text-[#0A192F]" />
-            <span className="hidden md:inline font-mono">+91 94300 88000</span>
+            <span className="hidden md:inline font-mono">9065296294</span>
             <span className="md:hidden">Call</span>
           </a>
 

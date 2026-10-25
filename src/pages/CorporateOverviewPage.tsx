@@ -13,10 +13,10 @@ interface CorporateOverviewPageProps {
 
 export const CorporateOverviewPage: React.FC<CorporateOverviewPageProps> = ({ onOpenQuoteModal }) => {
   const milestones = [
-    { year: '2018', title: 'Founding of Ventra Enterprises', desc: 'Commenced civil construction and agricultural commodities supply operations in Patna.' },
-    { year: '2020', title: 'Launch of Turnkey Construction @ ₹1,999/sq.ft', desc: 'Introduced standardized, all-inclusive home building guaranteeing zero hidden budget creep in Bihar.' },
+    { year: '2018', title: 'Founding of Brentra Enterprises', desc: 'Commenced civil construction and agricultural commodities supply operations in Patna.' },
+    { year: '2020', title: 'Launch of Turnkey Construction Starting @ ₹1,900/sq.ft', desc: 'Introduced standardized, all-inclusive home building guaranteeing zero hidden budget creep in Bihar.' },
     { year: '2022', title: 'Cold-Chain Logistics Expansion', desc: 'Commissioned 50-ton cold storage in Danapur and fleet of refrigerated delivery trucks for eggs, poultry, and fish.' },
-    { year: '2024', title: 'Establishment of Ventra IT Labs & Facility Care', desc: 'Digitized group operations and opened enterprise software services and on-demand urban technician dispatch.' },
+    { year: '2024', title: 'Establishment of Brentra IT Labs & Facility Care', desc: 'Digitized group operations and opened enterprise software services and on-demand urban technician dispatch.' },
     { year: '2026', title: 'Conglomerate Consolidation', desc: 'Unified 7 diversified verticals under single institutional governance, serving 25,000+ happy clients.' },
   ];
 
@@ -27,13 +27,13 @@ export const CorporateOverviewPage: React.FC<CorporateOverviewPageProps> = ({ on
       <section className="relative py-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-2 text-amber-700 text-xs font-bold uppercase tracking-widest mb-3">
-            <Building2 className="w-4 h-4" /> Ventra Group Corporate Overview
+            <Building2 className="w-4 h-4" /> Brentra Ventures Corporate Overview
           </div>
           <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.15] max-w-4xl">
             Diverse Ventures • Stronger Tomorrow
           </h1>
           <p className="text-base sm:text-xl text-slate-600 max-w-3xl mt-5 leading-relaxed">
-            Headquartered in Patna, Bihar, Ventra Group of Companies is driven by a singular institutional mandate: building transparent, dependable businesses that solve everyday infrastructure, dietary, technology, and lifestyle needs across Eastern India.
+            Headquartered in Patna, Bihar, Brentra Ventures PVT is driven by a singular institutional mandate: building transparent, dependable businesses that solve everyday infrastructure, dietary, technology, and lifestyle needs across Eastern India.
           </p>
         </div>
       </section>
@@ -58,7 +58,7 @@ export const CorporateOverviewPage: React.FC<CorporateOverviewPageProps> = ({ on
               </div>
               <h3 className="font-heading font-bold text-2xl text-[#0A192F]">Our Mission</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Empower families and commercial enterprises by eliminating opacity—whether guaranteeing ₹1,999/sq.ft for homes, farm-fresh eggs on morning tables, or software delivered on time.
+                Empower families and commercial enterprises by eliminating opacity—whether guaranteeing ₹1,900/sq.ft for homes, farm-fresh eggs on morning tables, or software delivered on time.
               </p>
             </div>
 
@@ -83,7 +83,7 @@ export const CorporateOverviewPage: React.FC<CorporateOverviewPageProps> = ({ on
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 space-y-2">
             <span className="text-xs font-bold text-amber-700 uppercase tracking-widest px-3 py-1 rounded bg-amber-50 border border-amber-200">
-              The Ventra Journey
+              The Brentra Journey
             </span>
             <h2 className="font-heading font-extrabold text-3xl text-[#0A192F]">
               Milestones & Organizational Evolution

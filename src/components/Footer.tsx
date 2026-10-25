@@ -6,7 +6,8 @@ import {
   MapPin, 
   ShieldCheck, 
   ArrowRight, 
-  MessageSquare
+  MessageSquare,
+  Globe
 } from 'lucide-react';
 
 interface FooterProps {
@@ -22,10 +23,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-white">
-              Ready to Partner with Eastern India's Fast-Growing Conglomerate?
+              Ready to Partner with Brentra Ventures Private Limited?
             </h3>
             <p className="text-sm text-slate-300">
-              Commercial supplies, ₹1,999/sq.ft turnkey construction, enterprise software, or verified facility contracts.
+              Turnkey construction @ ₹1,900/sq.ft, IT solutions from ₹10,000, manpower staffing, RO purification AMC, tank cleaning & pest control.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
@@ -36,10 +37,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
               Request Free Consultation / Quote
             </button>
             <a
-              href="tel:+919430088000"
+              href="tel:9065296294"
               className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/15 transition-colors flex items-center gap-2"
             >
-              <Phone className="w-3.5 h-3.5 text-cyan-400" /> +91-94300-88000
+              <Phone className="w-3.5 h-3.5 text-cyan-400" /> 9065296294
+            </a>
+            <a
+              href="tel:+919142144940"
+              className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/15 transition-colors flex items-center gap-2"
+            >
+              <Phone className="w-3.5 h-3.5 text-cyan-400" /> +91 91421 44940
             </a>
           </div>
         </div>
@@ -51,32 +58,45 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
           
           {/* Brand & Corporate Address */}
           <div className="lg:col-span-2 space-y-5">
-            <div className="bg-white p-3 rounded-2xl inline-block shadow-md">
+            <div className="bg-white p-3 rounded-2xl inline-flex items-center gap-3 shadow-md">
               <img 
-                src="/logo.png" 
-                alt="Ventra Group of Companies" 
+                src="/b-logo.png" 
+                alt="Brentra Ventures PVT" 
                 className="h-10 w-auto object-contain"
               />
+              <div className="flex flex-col">
+                <span className="font-extrabold text-base tracking-tight text-[#0A192F] leading-tight flex items-center gap-1 font-['Outfit']">
+                  <span>BRENTRA</span>
+                  <span className="text-[#0284C7]">VENTURES</span>
+                </span>
+                <span className="text-[9px] font-bold tracking-[0.2em] text-slate-500 uppercase">
+                  PRIVATE LIMITED
+                </span>
+              </div>
             </div>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pr-4">
-              Ventra Group of Companies is an institutional multi-vertical conglomerate operating across Technology, Turnkey Civil Infrastructure (@ ₹1,999/sq.ft), Cold-Chain Fresh FMCG, Facility Engineering, and Luxury Hospitality.
+              Brentra Ventures Private Limited is a trusted integrated service partner delivering complete home construction, enterprise IT & software engineering, manpower supply, water purification, tank cleaning, pest control, and social media marketing.
             </p>
 
             <div className="space-y-2.5 text-xs text-slate-300">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                 <span>
-                  <strong>Corporate Headquarters:</strong> Ventra Corporate Towers, Bailey Road, Patna, Bihar — 800001
+                  <strong>Office Address:</strong> Preven Vila, Flat Number 34, New Khajoorbana, Patna, Bihar – 800006
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Patna Central Helpline: <strong className="text-white">+91-94300-88000</strong></span>
+                <span>Customer Care: <strong className="text-white">9065296294</strong> / <strong className="text-white">+91 91421 44940</strong> / <strong className="text-white">+91 70042 77962</strong></span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Executive Secretariat: <strong className="text-white">corporate@ventragroup.in</strong></span>
+                <span>Official Email: <strong className="text-white">brentraventures@gmail.com</strong></span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Globe className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Website: <strong className="text-white">www.brentraventures.in</strong></span>
               </div>
             </div>
 
@@ -85,53 +105,58 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
                 CIN Registered
               </span>
               <span className="text-[11px] px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">
-                ISO 9001:2015
+                MSME Verified
               </span>
               <span className="text-[11px] px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">
-                FSSAI Licensed
+                GST Compliant
               </span>
             </div>
           </div>
 
-          {/* Business Verticals */}
+          {/* Business Verticals (All 7 Pages) */}
           <div className="space-y-3">
             <h4 className="font-heading font-bold text-sm text-white uppercase tracking-wider">
-              Business Divisions
+              Core Services & Pricing
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
+                <Link to="/facility-services" className="text-white hover:text-cyan-300 font-bold transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3 h-3 text-[#0788FF]" /> Brentra Facility (Home Services)
+                </Link>
+              </li>
+              <li>
+                <Link to="/construction-services" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3 h-3 text-amber-400" /> Construction (@ ₹1,900/sq.ft)
+                </Link>
+              </li>
+              <li>
                 <Link to="/it-solutions" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-cyan-400" /> IT & Digital Engineering
+                  <ArrowRight className="w-3 h-3 text-cyan-400" /> IT & Software (from ₹10,000)
                 </Link>
               </li>
               <li>
-                <Link to="/fresh-fmcg" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-emerald-400" /> Fresh Supply & FMCG Logistics
+                <Link to="/manpower-housekeeping" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3 h-3 text-blue-400" /> Manpower & Housekeeping
                 </Link>
               </li>
               <li>
-                <Link to="/realty-infrastructure" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-amber-400" /> Turnkey Construction (₹1,999)
+                <Link to="/ro-water-purifier" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3 h-3 text-sky-400" /> RO Purifiers & AMC (from ₹899)
                 </Link>
               </li>
               <li>
-                <Link to="/facility-services" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-sky-400" /> Facility Care & AMC (AC/RO)
+                <Link to="/water-tank-cleaning" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3 h-3 text-cyan-400" /> Water Tank Cleaning (from ₹700)
                 </Link>
               </li>
               <li>
-                <Link to="/events-hospitality" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-pink-400" /> Events, Galas & Catering
+                <Link to="/pest-control" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3 h-3 text-emerald-400" /> Pest Control (Termite ₹8/sq.ft)
                 </Link>
               </li>
               <li>
-                <Link to="/realty-infrastructure#materials" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-amber-400" /> Bulk Building Materials
-                </Link>
-              </li>
-              <li>
-                <Link to="/ventures" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-cyan-400" /> Healthcare Distribution
+                <Link to="/digital-marketing" className="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3 h-3 text-pink-400" /> Digital Marketing (from ₹4,999)
                 </Link>
               </li>
             </ul>
@@ -140,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
           {/* Governance & Hub */}
           <div className="space-y-3">
             <h4 className="font-heading font-bold text-sm text-white uppercase tracking-wider">
-              Governance & Hub
+              Company & Network
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
@@ -149,13 +174,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
                 </Link>
               </li>
               <li>
-                <a href="/#directors" className="text-slate-300 hover:text-white transition-colors">
-                  Board of Directors Quad
-                </a>
-              </li>
-              <li>
                 <Link to="/patna-hub" className="text-slate-300 hover:text-white transition-colors">
-                  Patna Central Hub & Facilities
+                  Patna Office & Hub Facilities
                 </Link>
               </li>
               <li>
@@ -168,19 +188,24 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
                   Vendor & Contractor Onboarding
                 </Link>
               </li>
+              <li>
+                <Link to="/facility-services" className="text-slate-300 hover:text-white transition-colors">
+                  Corporate Facility AMC
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Regional Network */}
           <div className="space-y-3">
             <h4 className="font-heading font-bold text-sm text-white uppercase tracking-wider">
-              Bihar Regional Coverage
+              Service Network
             </h4>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Dispatches and on-ground project execution across:
+              On-ground service delivery across Patna and major Bihar districts:
             </p>
             <div className="flex flex-wrap gap-1.5 text-[11px]">
-              {['Patna Metro', 'Danapur', 'Bihta', 'Hajipur', 'Muzaffarpur', 'Gaya', 'Bhagalpur', 'Darbhanga', 'Begusarai', 'Munger', 'Purnia'].map((district, idx) => (
+              {['Patna Metro', 'Danapur', 'Bihta', 'Hajipur', 'Muzaffarpur', 'Gaya', 'Bhagalpur', 'Darbhanga', 'Begusarai'].map((district, idx) => (
                 <span key={idx} className="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-300">
                   {district}
                 </span>
@@ -189,12 +214,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
 
             <div className="pt-2">
               <a
-                href="https://wa.me/919430088000"
+                href="https://wa.me/919142144940"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-semibold"
               >
-                <MessageSquare className="w-3.5 h-3.5" /> 24/7 WhatsApp Regional Desk
+                <MessageSquare className="w-3.5 h-3.5" /> 24x7 WhatsApp Service Desk
               </a>
             </div>
           </div>
@@ -204,14 +229,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
         {/* Legal & Copyright */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © {new Date().getFullYear()} Ventra Group of Companies. All Rights Reserved. Headquartered in Patna, Bihar.
+            © {new Date().getFullYear()} Brentra Ventures Private Limited. All Rights Reserved. Patna, Bihar – 800006.
           </div>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1 text-slate-300">
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> Enterprise Conglomerate Portal
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> One Company. Multiple Solutions. Endless Possibilities.
             </span>
-            <span>•</span>
-            <span className="text-slate-300">Diverse Ventures | Stronger Tomorrow</span>
           </div>
         </div>
 

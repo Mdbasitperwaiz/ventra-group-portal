@@ -1,355 +1,282 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  ArrowRight, 
-  Sparkles, 
-  Pause, 
-  Play,
-  Cpu,
-  Fish,
-  Building2,
-  Wrench,
-  PartyPopper,
-  Hammer,
-  HeartPulse
-} from 'lucide-react';
-import { HERO_SLIDES } from '../data/mockData';
-
-const iconMap: Record<string, React.ElementType> = {
-  Cpu,
-  Fish,
-  Building2,
-  Wrench,
-  PartyPopper,
-  Hammer,
-  HeartPulse
-};
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 
 interface HeroCarouselProps {
   onOpenQuoteModal: (vertical?: string) => void;
 }
 
-export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onOpenQuoteModal }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
+const slides = [
+  {
+    id: 1,
+    verticalId: 'it-solutions',
+    tag: 'Brentra IT Solutions',
+    tagColor: '#00C6D4',
+    headline: 'Next-Generation Software Engineering & Enterprise Digital Scale',
+    subtext: 'Custom Web Apps, Scalable Mobile Solutions, AI Workflows & Cloud Infrastructure built for ambitious enterprises',
+    primaryCtaText: 'Explore IT Solutions',
+    primaryCtaLink: '/it-solutions',
+    secondaryCtaText: 'Book a Free Tech Discovery Call',
+    image: '/img-it.jpg',
+  },
+  {
+    id: 2,
+    verticalId: 'fresh-fmcg',
+    tag: 'Brentra Fresh Supply',
+    tagColor: '#22C55E',
+    headline: 'Farm-Fresh Wholesale FMCG Delivered Daily Across Bihar',
+    subtext: 'Eggs, Poultry, River Fish, Gourmet Ice Cream & Makhana — cold-chain logistics from farm to your doorstep',
+    primaryCtaText: 'View Pricing & Products',
+    primaryCtaLink: '/fresh-fmcg',
+    secondaryCtaText: 'Place Bulk WhatsApp Order',
+    image: '/img-fmcg.jpg',
+  },
+  {
+    id: 3,
+    verticalId: 'realty-infrastructure',
+    tag: 'Brentra Realty',
+    tagColor: '#F59E0B',
+    headline: 'Complete Turnkey Construction Starting at ₹1,900 / sq. ft.',
+    subtext: 'RCC frame, 550D TMT steel, Kajaria tiles, modular kitchen, false ceiling — zero hidden costs, 10-year warranty',
+    primaryCtaText: 'Get Construction Estimate',
+    primaryCtaLink: '/realty-infrastructure',
+    secondaryCtaText: 'Book Free Site Inspection',
+    image: '/img-realty.jpg',
+  },
+  {
+    id: 4,
+    verticalId: 'facility-services',
+    tag: 'Brentra Facility',
+    tagColor: '#60A5FA',
+    headline: 'On-Demand AC, RO & Facility Maintenance in Under 60 Minutes',
+    subtext: 'Background-verified technicians, rapid urban dispatch, corporate AMC plans for Patna & Bihar',
+    primaryCtaText: 'Book a Technician',
+    primaryCtaLink: '/facility-services',
+    secondaryCtaText: 'View AMC Plans',
+    image: '/img-facility.jpg',
+  },
+  {
+    id: 5,
+    verticalId: 'events-hospitality',
+    tag: 'Brentra Events',
+    tagColor: '#F472B6',
+    headline: 'Signature Luxury Weddings & Corporate Summits in Bihar',
+    subtext: 'Turnkey event execution — stage, decor, catering, artist booking for 100 to 5,000+ guests',
+    primaryCtaText: 'Plan Your Event',
+    primaryCtaLink: '/events-hospitality',
+    secondaryCtaText: 'Book Event Consultation',
+    image: '/img-events.jpg',
+  },
+  {
+    id: 6,
+    verticalId: 'building-materials',
+    tag: 'Brentra Materials',
+    tagColor: '#FB923C',
+    headline: 'Bulk Building Materials at Wholesale Truckload Rates',
+    subtext: '550D TMT rebars, 53-grade cement, red clay bricks, river sand — direct depot pricing across Bihar',
+    primaryCtaText: 'Request Bulk Quote',
+    primaryCtaLink: '/realty-infrastructure#materials',
+    secondaryCtaText: 'Call Materials Desk',
+    image: '/img-materials.jpg',
+  },
+  {
+    id: 7,
+    verticalId: 'ventures',
+    tag: 'Brentra Healthcare',
+    tagColor: '#A78BFA',
+    headline: 'Pharmaceutical Wholesale Distribution & Cold-Chain Logistics',
+    subtext: 'Pan-Bihar medicine supply alliances, 2–8°C biological logistics, 3PL warehousing & industrial trade',
+    primaryCtaText: 'Explore Healthcare Division',
+    primaryCtaLink: '/ventures',
+    secondaryCtaText: 'Become a Trade Partner',
+    image: '/img-healthcare.jpg',
+  },
+];
 
-  const SLIDE_DURATION = 6500;
+export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onOpenQuoteModal }) => {
+  const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const DURATION = 6000;
 
   useEffect(() => {
     if (isPaused) return;
-
-    const intervalTime = 50;
-    const step = (intervalTime / SLIDE_DURATION) * 100;
-
     const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          setCurrentSlide((curr) => (curr + 1) % HERO_SLIDES.length);
-          return 0;
-        }
-        return prev + step;
-      });
-    }, intervalTime);
-
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, DURATION);
     return () => clearInterval(timer);
-  }, [isPaused, currentSlide]);
+  }, [isPaused, current]);
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-    setProgress(0);
-  };
+  const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
+  const next = () => setCurrent((c) => (c + 1) % slides.length);
 
-  const nextSlide = () => {
-    setCurrentSlide((curr) => (curr + 1) % HERO_SLIDES.length);
-    setProgress(0);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((curr) => (curr - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-    setProgress(0);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
-    const distance = touchStartX.current - touchEndX.current;
-    if (distance > 50) {
-      nextSlide();
-    } else if (distance < -50) {
-      prevSlide();
-    }
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
-
-  const active = HERO_SLIDES[currentSlide];
-  const IconComponent = iconMap[active.iconName] || Cpu;
+  const getIdx = (offset: number) => (current + offset + slides.length) % slides.length;
 
   return (
-    <div 
-      className="relative w-full overflow-hidden bg-white select-none border-b border-slate-200"
+    <section
+      className="bg-[#07111F] py-8 sm:py-10 border-b border-[#1E3E62]/60 overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      onTouchStart={(e) => { touchStartX.current = e.targetTouches[0].clientX; }}
+      onTouchEnd={(e) => {
+        if (!touchStartX.current) return;
+        const diff = touchStartX.current - e.changedTouches[0].clientX;
+        if (diff > 50) next();
+        else if (diff < -50) prev();
+        touchStartX.current = null;
+      }}
     >
-      {/* Premium White Background Glow & Subtle Geometric Grids */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div 
-          className="absolute -top-32 -left-32 w-[32rem] h-[32rem] rounded-full blur-[140px] opacity-15 transition-all duration-700"
-          style={{ backgroundColor: active.accentColor }}
-        />
-        <div 
-          className="absolute -bottom-32 -right-32 w-[34rem] h-[34rem] rounded-full blur-[160px] opacity-15 transition-all duration-700"
-          style={{ backgroundColor: active.accentColor }}
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000004_1px,transparent_1px),linear-gradient(to_bottom,#00000004_1px,transparent_1px)] bg-[size:3rem_3rem]" />
+      {/* Section Title */}
+      <div className="text-center mb-6 px-4">
+        <h2 className="text-white font-heading font-extrabold text-2xl sm:text-3xl tracking-wider uppercase">
+          Our Diverse Ventures
+        </h2>
       </div>
 
-      {/* Main Slide Presentation Stage */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 sm:py-16 relative z-10 min-h-[560px] sm:min-h-[600px] flex flex-col justify-between">
-        
-        {/* Top Badges & Slide Numbering */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span 
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm border"
-              style={{ 
-                backgroundColor: `${active.accentColor}12`, 
-                borderColor: `${active.accentColor}30`,
-                color: active.accentColor === '#00D2DF' ? '#0369A1' : active.accentColor === '#C5A880' ? '#92400E' : active.accentColor
-              }}
-            >
-              <IconComponent className="w-3.5 h-3.5" />
-              {active.tag}
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-1 text-xs text-slate-600 bg-slate-100 border border-slate-200 px-3 py-1 rounded-full font-medium">
-              <Sparkles className="w-3 h-3 text-amber-500" /> {active.badge}
-            </span>
-          </div>
+      {/* 3-Card Carousel */}
+      <div className="relative flex items-center justify-center gap-3 sm:gap-4 px-2 sm:px-6 max-w-[1400px] mx-auto">
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-mono font-bold text-slate-400">
-              0{currentSlide + 1} <span className="text-slate-300">/</span> 0{HERO_SLIDES.length}
-            </span>
-            <button
-              onClick={() => setIsPaused(!isPaused)}
-              className="p-1 rounded-md text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
-              title={isPaused ? "Resume autoplay" : "Pause autoplay"}
-              aria-label={isPaused ? "Resume autoplay" : "Pause autoplay"}
-            >
-              {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
-            </button>
+        {/* Prev Arrow */}
+        <button
+          onClick={prev}
+          className="absolute left-1 sm:left-2 z-20 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all backdrop-blur-sm shrink-0 cursor-pointer"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+
+        {/* Left Peek Card */}
+        <div
+          className="hidden sm:block relative rounded-2xl overflow-hidden cursor-pointer shrink-0 opacity-50 hover:opacity-65 transition-opacity"
+          style={{ width: '220px', height: '340px' }}
+          onClick={prev}
+        >
+          <img
+            src={slides[getIdx(-1)].image}
+            alt={slides[getIdx(-1)].tag}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-[#07111F]/60" />
+          <div className="absolute bottom-4 left-4 right-4">
+            <p className="text-white font-bold text-sm font-heading truncate">{slides[getIdx(-1)].tag}</p>
           </div>
         </div>
 
-        {/* Slide Content: Hero Headline, Copy, CTAs, and Live Highlight Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto py-6">
-          
-          {/* Left Column: Headlines & Call to Actions (7 cols) */}
-          <div className="lg:col-span-7 space-y-5">
-            <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-5xl tracking-tight text-[#0A192F] leading-[1.15]">
-              {active.headline.includes('₹1,999') ? (
-                <>
-                  Complete Turnkey Construction @ Flat{' '}
-                  <span className="text-amber-800 bg-amber-50 px-2 py-0.5 rounded-lg border border-amber-200 inline-block my-1 shadow-sm">
-                    ₹1,999 / sq. ft.
-                  </span>
-                </>
-              ) : (
-                active.headline
-              )}
+        {/* Center Active Card */}
+        <div
+          className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex-1 max-w-[860px]"
+          style={{ minHeight: '380px' }}
+        >
+          {/* Background Photo */}
+          <img
+            key={current}
+            src={slides[current].image}
+            alt={slides[current].tag}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ animation: 'fadeInSoft 0.6s ease-in-out' }}
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07111F]/90 via-[#07111F]/65 to-[#07111F]/30" />
+
+          {/* Content */}
+          <div className="relative z-10 p-6 sm:p-10 flex flex-col justify-center min-h-[380px]">
+            {/* Tag */}
+            <span
+              className="inline-flex items-center gap-1.5 self-start px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border"
+              style={{
+                color: slides[current].tagColor,
+                borderColor: `${slides[current].tagColor}40`,
+                backgroundColor: `${slides[current].tagColor}15`,
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: slides[current].tagColor }} />
+              {slides[current].tag}
+            </span>
+
+            {/* Headline */}
+            <h1 className="font-heading font-extrabold text-2xl sm:text-4xl text-white leading-tight max-w-xl mb-3">
+              {slides[current].headline}
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
-              {active.subtext}
+            {/* Subtext */}
+            <p className="text-slate-300 text-sm sm:text-base max-w-lg leading-relaxed mb-6">
+              {slides[current].subtext}
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+            <div className="flex flex-wrap items-center gap-3">
               <Link
-                to={active.primaryCtaLink}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white transition-all shadow-md hover:shadow-xl active:scale-95 group bg-[#0A192F] hover:bg-[#1E3E62]"
+                to={slides[current].primaryCtaLink}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 text-sm font-bold transition-all hover:scale-105 active:scale-95"
+                style={{
+                  borderColor: slides[current].tagColor,
+                  color: slides[current].tagColor,
+                  backgroundColor: `${slides[current].tagColor}15`,
+                }}
               >
-                <span>{active.primaryCtaText}</span>
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                {slides[current].primaryCtaText}
+                <ArrowRight className="w-4 h-4" />
               </Link>
 
-              {active.secondaryCtaLink.startsWith('/') ? (
-                <Link
-                  to={active.secondaryCtaLink}
-                  className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 transition-all shadow-sm"
-                >
-                  {active.secondaryCtaText}
-                </Link>
-              ) : (
-                <button
-                  onClick={() => onOpenQuoteModal(active.verticalId)}
-                  className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 transition-all shadow-sm cursor-pointer"
-                >
-                  {active.secondaryCtaText}
-                </button>
-              )}
-            </div>
-
-            {/* Live Operational Highlight Tag */}
-            <div className="pt-2 flex items-center gap-2.5 text-xs text-slate-500 font-medium">
-              <span className="flex h-2.5 w-2.5 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-              </span>
-              <span>Central Patna Hub Live Dispatch: <strong className="text-slate-800">{active.stats.label} — {active.stats.value}</strong></span>
+              <button
+                onClick={() => onOpenQuoteModal(slides[current].verticalId)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/30 text-sm font-bold text-white hover:bg-white/10 transition-all active:scale-95 cursor-pointer"
+              >
+                {slides[current].secondaryCtaText}
+              </button>
             </div>
           </div>
-
-          {/* Right Column: Visual Feature Showcase & Metric Card (5 cols) */}
-          <div className="lg:col-span-5 hidden sm:block">
-            <div className="relative p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xl overflow-hidden group">
-              <div 
-                className="absolute top-0 right-0 w-32 h-32 rounded-bl-full opacity-10 pointer-events-none transition-colors"
-                style={{ backgroundColor: active.accentColor }}
-              />
-              
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                <div className="flex items-center gap-3">
-                  <div 
-                    className="p-3 rounded-xl shadow-sm"
-                    style={{ backgroundColor: `${active.accentColor}15`, color: active.accentColor }}
-                  >
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h2 className="text-sm font-bold text-[#0A192F] uppercase tracking-wider">
-                      Ventra {active.verticalId.replace('-', ' ')}
-                    </h2>
-                    <p className="text-xs text-slate-500">Institutional Excellence in Bihar</p>
-                  </div>
-                </div>
-                <span className="text-[11px] font-bold px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700">
-                  Tier-1 Verified
-                </span>
-              </div>
-
-              {/* Specific Vertical Fast Facts */}
-              <div className="py-5 space-y-3">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-slate-500">Operations Base:</span>
-                  <span className="text-[#0A192F] font-semibold">Patna, Danapur & Regional Bihar</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-slate-500">Service SLA:</span>
-                  <span className="text-emerald-700 font-bold">100% Guaranteed On-Time</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-slate-500">Scale Milestone:</span>
-                  <span className="text-amber-700 font-extrabold">{active.stats.value} {active.stats.label}</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-slate-500">Governance:</span>
-                  <span className="text-blue-900 font-semibold">Ventra Board Directed</span>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
-                <button
-                  onClick={() => onOpenQuoteModal(active.verticalId)}
-                  className="text-xs font-bold text-[#0A192F] hover:text-amber-700 flex items-center gap-1.5 cursor-pointer"
-                >
-                  Direct Dispatch Inquiry <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider font-mono font-bold">
-                  REF: VT-0{active.id}
-                </span>
-              </div>
-            </div>
-          </div>
-
         </div>
 
-        {/* Bottom Interactive Navigation Strip (Pills & Progress) */}
-        <div className="pt-4 space-y-3">
-          
-          {/* Progress Bar */}
-          <div className="w-full bg-slate-100 h-1 rounded-full overflow-hidden">
-            <div 
-              className="h-full transition-all duration-75 ease-linear rounded-full"
-              style={{ 
-                width: `${progress}%`,
-                backgroundColor: active.accentColor
-              }}
-            />
+        {/* Right Peek Card */}
+        <div
+          className="hidden sm:block relative rounded-2xl overflow-hidden cursor-pointer shrink-0 opacity-50 hover:opacity-65 transition-opacity"
+          style={{ width: '220px', height: '340px' }}
+          onClick={next}
+        >
+          <img
+            src={slides[getIdx(1)].image}
+            alt={slides[getIdx(1)].tag}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-[#07111F]/60" />
+          <div className="absolute bottom-4 left-4 right-4">
+            <p className="text-white font-bold text-sm font-heading truncate">{slides[getIdx(1)].tag}</p>
           </div>
-
-          {/* Controls & Slide Selector Tabs */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            
-            {/* Arrows */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={prevSlide}
-                className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 hover:text-black transition-all active:scale-90 cursor-pointer"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 hover:text-black transition-all active:scale-90 cursor-pointer"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-              <span className="text-xs text-slate-500 ml-2 hidden md:inline">
-                Click or swipe to explore all 7 business verticals
-              </span>
-            </div>
-
-            {/* Quick-Jump Tab Buttons */}
-            <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto max-w-full pb-1 no-scrollbar">
-              {HERO_SLIDES.map((slide, index) => {
-                const isCurrent = index === currentSlide;
-                return (
-                  <button
-                    key={slide.id}
-                    onClick={() => goToSlide(index)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
-                      isCurrent 
-                        ? 'bg-[#0A192F] text-white shadow-md font-bold' 
-                        : 'text-slate-600 hover:text-black hover:bg-slate-100 border border-transparent'
-                    }`}
-                  >
-                    <span 
-                      className={`w-1.5 h-1.5 rounded-full ${isCurrent ? 'bg-amber-400' : 'bg-slate-300'}`} 
-                    />
-                    <span className="hidden sm:inline">
-                      {slide.verticalId === 'realty-infrastructure' 
-                        ? 'Realty ₹1,999' 
-                        : slide.verticalId.split('-')[0].toUpperCase()}
-                    </span>
-                    <span className="sm:hidden">0{index + 1}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-          </div>
-
         </div>
 
+        {/* Next Arrow */}
+        <button
+          onClick={next}
+          className="absolute right-1 sm:right-2 z-20 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all backdrop-blur-sm shrink-0 cursor-pointer"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
       </div>
-    </div>
+
+      {/* Dot Indicators */}
+      <div className="flex justify-center gap-2 mt-6">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            className={`rounded-full transition-all duration-300 cursor-pointer ${
+              idx === current
+                ? 'w-6 h-2.5 bg-white'
+                : 'w-2.5 h-2.5 bg-white/30 hover:bg-white/50'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes fadeInSoft {
+          from { opacity: 0.4; transform: scale(1.03); }
+          to   { opacity: 1;   transform: scale(1); }
+        }
+      `}</style>
+    </section>
   );
 };
