@@ -5,17 +5,23 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   ArrowRight, 
-  Phone,
-  Home,
-  Layers,
-  Wrench,
-  Paintbrush,
-  Sparkles,
-  Calculator,
-  Compass,
-  FileCheck2,
-  HardHat,
-  MessageSquare
+  Phone, 
+  Home, 
+  Layers, 
+  Wrench, 
+  Paintbrush, 
+  Sparkles, 
+  Calculator, 
+  Compass, 
+  FileCheck2, 
+  HardHat, 
+  MessageSquare,
+  Eye,
+  X,
+  Download,
+  ZoomIn,
+  Globe,
+  Briefcase
 } from 'lucide-react';
 import { CONSTRUCTION_INCLUSIONS } from '../data/mockData';
 
@@ -24,6 +30,9 @@ interface RealtyPageProps {
 }
 
 export const RealtyPage: React.FC<RealtyPageProps> = ({ onOpenQuoteModal }) => {
+  // Poster Zoom Modal State
+  const [activePosterModal, setActivePosterModal] = useState<'infrastructure' | 'realestate' | null>(null);
+
   // Calculator State
   const [sqft, setSqft] = useState<number>(1800);
   const [floors, setFloors] = useState<number>(2);
@@ -102,87 +111,228 @@ export const RealtyPage: React.FC<RealtyPageProps> = ({ onOpenQuoteModal }) => {
 
   return (
     <div className="min-h-screen bg-white text-slate-800">
-      
-      {/* Hero Banner - Complete Home Construction */}
-      <section className="relative py-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200 overflow-hidden">
+         {/* Hero Banner - Complete Home Construction & Official Poster */}
+      <section className="relative py-16 lg:py-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="flex flex-wrap items-center gap-2 mb-3">
+          <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold uppercase tracking-widest">
               <Building2 className="w-4 h-4 text-amber-600" /> Brentra Construction Services
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-widest">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-widest">
               <HardHat className="w-3.5 h-3.5 text-blue-700" /> Plan • Build • Deliver
             </span>
-          </div>
-
-          <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.12] max-w-4xl">
-            Complete Home Construction Starting at{' '}
-            <span className="text-amber-800 bg-amber-50 px-3 py-1 rounded-xl border border-amber-200 inline-block my-1 font-mono">
-              ₹1,900 / sq. ft.
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold uppercase tracking-widest">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Real Estate Done Right
             </span>
-          </h1>
-
-          <p className="text-lg sm:text-2xl text-slate-700 font-semibold mt-3">
-            पूरा घर बनवाइए – सब कुछ एक ही कीमत में!
-          </p>
-
-          <p className="text-base sm:text-lg text-slate-600 max-w-3xl mt-3 leading-relaxed">
-            From foundation to finish, Brentra Ventures is your trusted partner in residential and commercial building construction across Patna and Bihar. Structural integrity, branded materials, and on-time turnkey delivery guaranteed.
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4 pt-8">
-            <a
-              href="#calculator"
-              className="px-6 py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center gap-2"
-            >
-              <Calculator className="w-4 h-4 text-amber-400" />
-              <span>Calculate Construction Cost</span>
-            </a>
-            <a
-              href="#enquiry"
-              className="px-5 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-colors flex items-center gap-2"
-            >
-              <FileCheck2 className="w-4 h-4" />
-              <span>Get Detailed Quotation</span>
-            </a>
-            <a
-              href="tel:9065296294"
-              className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs uppercase tracking-wider border border-slate-300 transition-colors shadow-sm flex items-center gap-2"
-            >
-              <Phone className="w-4 h-4 text-amber-600" />
-              <span>Call: 9065296294 / 9142144940</span>
-            </a>
           </div>
 
-          {/* Core Pillars */}
-          <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div className="flex items-center gap-2 text-[#0A192F] font-bold text-sm">
-                <ShieldCheck className="w-4 h-4 text-amber-600" /> Strong Structure
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Left 7 Columns: Content & Pricing */}
+            <div className="lg:col-span-7 space-y-4">
+              <h1 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0A192F] tracking-tight leading-[1.12]">
+                Complete Home Construction Starting at{' '}
+                <span className="text-amber-800 bg-amber-50 px-3 py-1 rounded-xl border border-amber-200 inline-block my-1 font-mono">
+                  ₹1,900 / sq. ft.
+                </span>
+              </h1>
+
+              <p className="text-lg sm:text-2xl text-slate-700 font-semibold">
+                पूरा घर बनवाइए – सब कुछ एक ही कीमत में!
+              </p>
+
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+                From foundation to finish, Brentra Ventures is your trusted partner in residential and commercial building construction across Patna and Bihar. Structural integrity, branded materials, and on-time turnkey delivery guaranteed.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-4">
+                <a
+                  href="#calculator"
+                  className="px-6 py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#1E3E62] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center gap-2"
+                >
+                  <Calculator className="w-4 h-4 text-amber-400" />
+                  <span>Calculate Construction Cost</span>
+                </a>
+                <a
+                  href="#enquiry"
+                  className="px-5 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-colors flex items-center gap-2"
+                >
+                  <FileCheck2 className="w-4 h-4" />
+                  <span>Get Detailed Quotation</span>
+                </a>
+                <a
+                  href="tel:9065296294"
+                  className="px-4 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs uppercase tracking-wider border border-slate-300 transition-colors shadow-sm flex items-center gap-1.5"
+                >
+                  <Phone className="w-4 h-4 text-amber-600" />
+                  <span>9065296294 / 9142144940</span>
+                </a>
               </div>
-              <div className="text-xs text-slate-500 mt-1">Long Life Seismic Safe RCC with 550D TMT Steel</div>
+
+              {/* Core Pillars */}
+              <div className="pt-6 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center gap-1.5 text-[#0A192F] font-bold text-xs">
+                    <ShieldCheck className="w-4 h-4 text-amber-600" /> Strong Structure
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">Seismic Safe RCC with 550D TMT</div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center gap-1.5 text-[#0A192F] font-bold text-xs">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Branded Spares
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">Tata Steel & UltraTech Cement</div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center gap-1.5 text-[#0A192F] font-bold text-xs">
+                    <Home className="w-4 h-4 text-blue-700" /> Turnkey Ready
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">Plan to Key Handover Solution</div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center gap-1.5 text-[#0A192F] font-bold text-xs">
+                    <Sparkles className="w-4 h-4 text-purple-600" /> On-Time SLA
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">Zero Contractor Delays</div>
+                </div>
+              </div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div className="flex items-center gap-2 text-[#0A192F] font-bold text-sm">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Premium Materials
+
+            {/* Right 5 Columns: Official Real Estate Poster Showcase Card */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/30 shadow-2xl bg-[#061426] group">
+                
+                {/* Poster Image */}
+                <div className="relative h-[490px] w-full overflow-hidden bg-slate-950">
+                  <img 
+                    src="/brentra-real-estate-poster.jpg" 
+                    alt="Brentra Ventures Residential & Commercial Properties Official Poster" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+                    onClick={() => setActivePosterModal('realestate')}
+                  />
+                  
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#061426]/90 via-transparent to-black/20 pointer-events-none" />
+
+                  {/* Top Badge */}
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                    <Building2 className="w-3.5 h-3.5" />
+                    <span>Official Property Brochure</span>
+                  </div>
+
+                  {/* Zoom Preview Button */}
+                  <button
+                    onClick={() => setActivePosterModal('realestate')}
+                    className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center transition-transform hover:scale-110 shadow-lg cursor-pointer"
+                    title="Click to Zoom Full Poster"
+                  >
+                    <ZoomIn className="w-4 h-4 text-amber-400" />
+                  </button>
+
+                  {/* Bottom Information Card on Poster */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-[#061426]/90 backdrop-blur-md border border-amber-500/30 text-white space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-amber-400 font-bold tracking-wider">RESIDENTIAL & COMMERCIAL</span>
+                      <span className="text-slate-300 font-mono text-[11px]">Patna • Bihar</span>
+                    </div>
+
+                    <h3 className="font-heading font-bold text-sm sm:text-base text-white leading-snug">
+                      Find Your Perfect Space with Brentra Ventures
+                    </h3>
+
+                    <p className="text-[11px] text-slate-300 line-clamp-2 leading-relaxed">
+                      Villas, high-rise apartments, and commercial plazas with transparent guidance and long-term investment value.
+                    </p>
+
+                    <div className="flex items-center justify-between pt-1 border-t border-white/10 text-[11px]">
+                      <button
+                        onClick={() => setActivePosterModal('realestate')}
+                        className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 cursor-pointer"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Enlarge Poster Details</span>
+                      </button>
+
+                      <a
+                        href={generateWhatsAppUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1"
+                      >
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span>WhatsApp Connect</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-              <div className="text-xs text-slate-500 mt-1">100% Genuine Branded Cement, Tiles & Fittings</div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div className="flex items-center gap-2 text-[#0A192F] font-bold text-sm">
-                <Home className="w-4 h-4 text-blue-700" /> Turnkey Solution
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Corporate Infrastructure & Global EPC Panoramic Banner Showcase */}
+      <section className="py-12 bg-[#061426] text-white border-b border-amber-500/20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-400 text-xs font-bold uppercase tracking-widest mb-2">
+                <Globe className="w-3.5 h-3.5" /> Nation Building • Global EPC • Infrastructure
               </div>
-              <div className="text-xs text-slate-500 mt-1">From Architectural Plan to Ready Key Handover</div>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
+                Real People. Real Work. Real Impact.
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-1">
+                Infrastructure builds nations. Global trade connects opportunities. Explore Brentra Ventures Pvt. Ltd.'s integrated engineering and EPC capabilities.
+              </p>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div className="flex items-center gap-2 text-[#0A192F] font-bold text-sm">
-                <Sparkles className="w-4 h-4 text-purple-600" /> On-Time Delivery
-              </div>
-              <div className="text-xs text-slate-500 mt-1">Milestone Timeline with Zero Contractor Delays</div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setActivePosterModal('infrastructure')}
+                className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#061426] text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 cursor-pointer transition-colors"
+              >
+                <ZoomIn className="w-4 h-4" />
+                <span>View Full Banner</span>
+              </button>
             </div>
           </div>
 
+          {/* Panoramic Banner Image Container */}
+          <div 
+            onClick={() => setActivePosterModal('infrastructure')}
+            className="relative rounded-3xl overflow-hidden border border-amber-500/30 shadow-2xl group cursor-pointer bg-black"
+          >
+            <img 
+              src="/brentra-infrastructure-banner.jpg" 
+              alt="Brentra Ventures Pvt. Ltd. Real People. Real Work. Real Impact. Infrastructure & Global Trade Poster" 
+              className="w-full h-auto max-h-[480px] object-cover group-hover:scale-[1.02] transition-transform duration-700"
+            />
+            
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="px-5 py-2.5 rounded-xl bg-amber-500 text-slate-900 font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-xl">
+                <ZoomIn className="w-4 h-4" /> Click to Enlarge Panoramic Poster
+              </span>
+            </div>
+
+            {/* Bottom Floating Bar */}
+            <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#061426]/85 backdrop-blur-md border border-amber-500/20 text-white flex flex-wrap items-center justify-between text-xs gap-2">
+              <div className="flex items-center gap-3 font-semibold text-slate-200">
+                <span className="text-amber-400 font-bold">CORE VERTICALS:</span>
+                <span className="hidden sm:inline">Real Estate • Construction • EPC • Infrastructure • Global Trade • Entertainment</span>
+                <span className="sm:hidden">Real Estate & EPC</span>
+              </div>
+              <span className="text-amber-400 font-mono font-bold text-[11px]">
+                INDIA | GLOBAL
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -701,9 +851,84 @@ export const RealtyPage: React.FC<RealtyPageProps> = ({ onOpenQuoteModal }) => {
             )}
 
           </div>
-
         </div>
       </section>
+
+      {/* Poster Zoom Modal */}
+      {activePosterModal && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md animate-fade-in"
+          onClick={() => setActivePosterModal(null)}
+        >
+          <div 
+            className="relative w-full max-w-5xl bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 flex flex-col max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="p-4 bg-[#061426] text-white flex items-center justify-between border-b border-amber-500/20">
+              <div className="flex items-center gap-2.5">
+                <Building2 className="w-4 h-4 text-amber-400" />
+                <span className="font-bold text-xs sm:text-sm text-white">
+                  {activePosterModal === 'realestate' 
+                    ? 'Brentra Ventures — Residential & Commercial Properties (Official Poster)' 
+                    : 'Brentra Ventures — Real People. Real Work. Real Impact. (Infrastructure & EPC Banner)'}
+                </span>
+              </div>
+              <button
+                onClick={() => setActivePosterModal(null)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Image Display */}
+            <div className="relative flex-1 overflow-auto p-4 flex items-center justify-center bg-black/95">
+              <img 
+                src={activePosterModal === 'realestate' ? '/brentra-real-estate-poster.jpg' : '/brentra-infrastructure-banner.jpg'} 
+                alt="Brentra Poster Full View" 
+                className="max-w-full max-h-[72vh] object-contain rounded-xl shadow-2xl"
+              />
+            </div>
+
+            {/* Modal Footer Controls */}
+            <div className="p-4 bg-[#061426] text-white flex flex-wrap items-center justify-between gap-3 text-xs border-t border-amber-500/20">
+              <div className="text-slate-300">
+                <span className="text-amber-400 font-bold">Brentra Ventures:</span> Preven Vila, Flat 34, New Khajoorbana, Patna – 800006
+              </div>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={activePosterModal === 'realestate' ? '/brentra-real-estate-poster.jpg' : '/brentra-infrastructure-banner.jpg'}
+                  download
+                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Download High-Res</span>
+                </a>
+
+                <a
+                  href={generateWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>Inquire on WhatsApp</span>
+                </a>
+
+                <button
+                  onClick={() => setActivePosterModal(null)}
+                  className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold text-xs transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
 
     </div>
   );
